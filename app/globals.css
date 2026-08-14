@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #12081d;
+    color: #ffffff;
+    font-family: var(--font-outfit), system-ui, sans-serif;
+  }
+
+  body {
+    overflow-x: hidden;
+    background-color: #12081d;
+  }
+}
+
+/* CUSTOM ANIMATIONS */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+/* CUSTOM SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #12081d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #432a63;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8869AC;
+}
+
+/* ULTRA-PREMIUM DARK LUXURY UTILITIES & SHIMMER EFFECTS */
+
+@keyframes goldShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulseSlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-gold-shimmer {
+  background: linear-gradient(90deg, #f5d77f 0%, #ffffff 50%, #f5d77f 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: goldShimmer 4s linear infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 6s ease-in-out infinite;
+}
+
+/* GLASSMORPHISM & LUXURY GLOWS */
+.glass-panel {
+  background: rgba(32, 18, 51, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(136, 105, 172, 0.35);
+}
+
+.glass-panel-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(45, 25, 71, 0.95);
+  border-color: rgba(136, 105, 172, 0.65);
+  box-shadow: 0 12px 35px -10px rgba(136, 105, 172, 0.35), 0 0 25px rgba(136, 105, 172, 0.3);
+}
+
+/* CUSTOM SELECTION & FOCUS STATES */
+*:focus-visible {
+  outline: 2px solid #8869AC !important;
+  outline-offset: 2px;
+}
+
