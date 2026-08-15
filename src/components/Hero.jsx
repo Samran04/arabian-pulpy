@@ -12,40 +12,23 @@ export default function Hero({ onExploreClick }) {
   return (
     <section id="hero" className="relative min-h-[85vh] bg-[#12081d] overflow-hidden flex items-center justify-center pt-16 pb-24">
 
+      {/* HERO BACKGROUND IMAGE */}
+      <div className="absolute inset-0 z-0 opacity-75 pointer-events-none">
+        <Image
+          src="/assets/hero-bg.png"
+          alt="Hero Background"
+          fill
+          priority
+          className="object-cover object-center"
+        />
+      </div>
+
       {/* RIVE VECTOR ANIMATION & INTERACTIVE LIGHT PARTICLES OVERLAY */}
       <RiveLightAnimation />
 
-      {/* DESKTOP BACKGROUND VIDEO WITH SMOOTH FADE MASK */}
-      <div className="hidden md:block absolute inset-0 w-full h-full z-0 pointer-events-none [mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_88%,transparent_100%)]">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster="/assets/hero-bg.png"
-          className="w-full h-full object-cover object-center opacity-85"
-        >
-          <source src="/assets/hero-bg-desktop.mp4" type="video/mp4" />
-        </video>
-      </div>
-
-      {/* MOBILE PORTRAIT BACKGROUND VIDEO WITH SMOOTH FADE MASK */}
-      <div className="block md:hidden absolute inset-0 w-full h-full z-0 pointer-events-none [mask-image:linear-gradient(to_bottom,transparent_0%,black_15%,black_85%,transparent_100%)]">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster="/assets/hero-bg.png"
-          className="w-full h-full object-cover object-center opacity-85"
-        >
-          <source src="/assets/hero-bg-portrait.mp4" type="video/mp4" />
-        </video>
-      </div>
-
       {/* AMBIENT GLOW & SEAMLESS BACKDROP LIGHTING OVERLAYS */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[550px] bg-gradient-to-r from-[#8869AC]/35 via-[#432a63]/45 to-[#f5d77f]/15 blur-[140px] rounded-full pointer-events-none animate-pulse-slow z-0" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#12081d] via-[#12081d]/30 to-[#12081d] pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#12081d]/85 via-transparent to-[#12081d] pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-start justify-center text-left space-y-6 sm:space-y-8">
 
