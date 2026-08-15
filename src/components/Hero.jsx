@@ -12,11 +12,22 @@ export default function Hero({ onExploreClick }) {
   return (
     <section id="hero" className="relative min-h-[85vh] bg-[#12081d] overflow-hidden flex items-center justify-center pt-16 pb-24">
 
-      {/* HERO BACKGROUND IMAGE */}
-      <div className="absolute inset-0 z-0 opacity-75 pointer-events-none">
+      {/* DESKTOP BACKGROUND IMAGE */}
+      <div className="hidden md:block absolute inset-0 z-0 opacity-75 pointer-events-none">
         <Image
           src="/assets/hero-bg.png"
-          alt="Hero Background"
+          alt="Hero Background Desktop"
+          fill
+          priority
+          className="object-cover object-center"
+        />
+      </div>
+
+      {/* MOBILE PORTRAIT BACKGROUND IMAGE */}
+      <div className="block md:hidden absolute inset-0 z-0 opacity-75 pointer-events-none">
+        <Image
+          src="/assets/hero-bg-mobile.png"
+          alt="Hero Background Mobile"
           fill
           priority
           className="object-cover object-center"
