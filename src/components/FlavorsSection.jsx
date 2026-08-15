@@ -8,7 +8,7 @@ import { useCart } from "../context/CartContext";
 
 export default function FlavorsSection({ onSelectFlavor }) {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [showAllMobile, setShowAllMobile] = useState(false);
+  const [showAll, setShowAll] = useState(false);
   const { addToCart } = useCart();
 
   const categories = ["All", "Tropical", "Berries & Exotic", "Citrus & Herbal"];
@@ -18,8 +18,8 @@ export default function FlavorsSection({ onSelectFlavor }) {
       ? FLAVORS_DATA
       : FLAVORS_DATA.filter((f) => f.category === activeCategory);
 
-  // On mobile screen, limit to 4 items unless showAllMobile is true
-  const displayedFlavors = showAllMobile ? filteredFlavors : filteredFlavors.slice(0, 4);
+  // Limit initial display to 4 products on all screens unless showAll is true
+  const displayedFlavors = showAll ? filteredFlavors : filteredFlavors.slice(0, 4);
 
   return (
     <section id="flavors" className="py-20 bg-[#12081d] relative">
@@ -51,7 +51,7 @@ export default function FlavorsSection({ onSelectFlavor }) {
                 key={cat}
                 onClick={() => {
                   setActiveCategory(cat);
-                  setShowAllMobile(true);
+                  setShowAll(false);
                 }}
                 className={`px-4 py-2 sm:px-4.5 sm:py-2.5 rounded-xl text-xs font-sans font-bold tracking-wider shrink-0 transition-all duration-300 ${
                   activeCategory === cat
@@ -65,16 +65,13 @@ export default function FlavorsSection({ onSelectFlavor }) {
           </div>
         </div>
 
-        {/* PRODUCTS GRID - SPACIOUS LUXURY LAYOUT */}
+        {/* PRODUCTS GRID - 4 PRODUCTS DISPLAY */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-          {filteredFlavors.map((flavor, index) => {
-            // Hide items beyond index 3 on mobile screens unless showAllMobile is true
-            const isHiddenOnMobile = !showAllMobile && index >= 4;
-
+          {displayedFlavors.map((flavor) => {
             return (
               <div
                 key={flavor.id}
-                className={`${isHiddenOnMobile ? "hidden md:flex" : "flex"} group relative rounded-2xl bg-gradient-to-b from-[#24133b] via-[#1a0c2c] to-[#12081d] border border-[#8869AC]/35 p-4 sm:p-5 flex-col justify-between transition-all duration-500 hover:-translate-y-2 hover:border-[#8869AC] hover:shadow-[0_20px_45px_rgba(136,105,172,0.35)]`}
+                className="flex group relative rounded-2xl bg-gradient-to-b from-[#24133b] via-[#1a0c2c] to-[#12081d] border border-[#8869AC]/35 p-4 sm:p-5 flex-col justify-between transition-all duration-500 hover:-translate-y-2 hover:border-[#8869AC] hover:shadow-[0_20px_45px_rgba(136,105,172,0.35)]"
               >
                 
                 {/* TOP BADGE & RATING */}
@@ -158,15 +155,15 @@ export default function FlavorsSection({ onSelectFlavor }) {
           })}
         </div>
 
-        {/* VIEW MORE PRODUCTS TOGGLE BUTTON FOR MOBILE ONLY */}
+        {/* VIEW MORE PRODUCTS TOGGLE BUTTON */}
         {filteredFlavors.length > 4 && (
-          <div className="pt-8 md:hidden flex justify-center">
+          <div className="pt-10 flex justify-center">
             <button
-              onClick={() => setShowAllMobile(!showAllMobile)}
-              className="group relative inline-flex items-center gap-3 px-8 py-3.5 rounded-2xl bg-[#160a25] border border-[#e3be5a]/40 text-[#f5d77f] font-montserrat font-bold text-xs tracking-[0.2em] uppercase hover:bg-[#e3be5a] hover:text-[#12081d] hover:border-[#e3be5a] shadow-gold-glow transition-all duration-300"
+              onClick={() => setShowAll(!showAll)}
+              className="group relative inline-flex items-center gap-3 px-8 py-3.5 rounded-2xl bg-[#24133d] border border-[#8869AC]/40 text-[#f5d77f] font-montserrat font-bold text-xs tracking-[0.2em] uppercase hover:bg-[#8869AC] hover:text-white hover:border-[#8869AC] shadow-primary-glow transition-all duration-300"
             >
-              <span>{showAllMobile ? "SHOW FEWER FLAVORS" : `VIEW MORE FLAVORS (${filteredFlavors.length - 4} MORE)`}</span>
-              <ArrowRight className={`w-4 h-4 transition-transform duration-300 ${showAllMobile ? "-rotate-90" : "rotate-90 group-hover:translate-y-0.5"}`} />
+              <span>{showAll ? "SHOW FEWER FLAVORS" : `VIEW MORE FLAVORS (${filteredFlavors.length - 4} MORE)`}</span>
+              <ArrowRight className={`w-4 h-4 transition-transform duration-300 ${showAll ? "-rotate-90" : "rotate-90 group-hover:translate-y-0.5"}`} />
             </button>
           </div>
         )}
