@@ -4,12 +4,16 @@ import React from "react";
 import Image from "next/image";
 import { Sparkles, Leaf, Citrus, ChevronRight } from "lucide-react";
 import { useCart } from "../context/CartContext";
+import RiveLightAnimation from "./RiveLightAnimation";
 
 export default function Hero({ onExploreClick }) {
   const { addToCart } = useCart();
 
   return (
     <section id="hero" className="relative min-h-[85vh] bg-[#12081d] overflow-hidden flex items-center justify-center pt-16 pb-24">
+
+      {/* RIVE VECTOR ANIMATION & INTERACTIVE LIGHT PARTICLES OVERLAY */}
+      <RiveLightAnimation />
 
       {/* DESKTOP BACKGROUND VIDEO WITH SMOOTH FADE MASK */}
       <div className="hidden md:block absolute inset-0 w-full h-full z-0 pointer-events-none [mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_88%,transparent_100%)]">
