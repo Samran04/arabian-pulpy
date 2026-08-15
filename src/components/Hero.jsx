@@ -12,8 +12,8 @@ export default function Hero({ onExploreClick }) {
   return (
     <section id="hero" className="relative min-h-[80vh] md:min-h-[85vh] bg-[#12081d] overflow-hidden flex items-center justify-center pt-10 pb-16 md:pt-16 md:pb-24">
 
-      {/* DESKTOP BACKGROUND IMAGE */}
-      <div className="hidden md:block absolute inset-0 z-0 opacity-75 pointer-events-none">
+      {/* DESKTOP BACKGROUND IMAGE - HIGHER VISIBILITY */}
+      <div className="hidden md:block absolute inset-0 z-0 opacity-95 pointer-events-none">
         <Image
           src="/assets/hero-bg.png"
           alt="Hero Background Desktop"
@@ -39,7 +39,11 @@ export default function Hero({ onExploreClick }) {
 
       {/* AMBIENT GLOW & SEAMLESS BACKDROP LIGHTING OVERLAYS */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[550px] bg-gradient-to-r from-[#8869AC]/35 via-[#432a63]/45 to-[#f5d77f]/15 blur-[140px] rounded-full pointer-events-none animate-pulse-slow z-0" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#12081d]/50 via-transparent to-[#12081d]/80 md:from-[#12081d]/85 md:to-[#12081d] pointer-events-none z-0" />
+      
+      {/* DESKTOP BOTTLE HIGHLIGHT SPOTLIGHT GLO (RIGHT SIDE) */}
+      <div className="hidden md:block absolute top-1/2 right-[10%] -translate-y-1/2 w-[550px] h-[550px] bg-gradient-to-tr from-[#f5d77f]/30 via-[#8869AC]/35 to-transparent blur-[110px] rounded-full pointer-events-none animate-pulse-slow z-0" />
+
+      <div className="absolute inset-0 bg-gradient-to-b from-[#12081d]/50 via-transparent to-[#12081d]/80 md:from-[#12081d]/40 md:via-transparent md:to-[#12081d]/55 pointer-events-none z-0" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-start justify-center text-left space-y-4 sm:space-y-8 mt-0">
 
