@@ -1,11 +1,11 @@
-import { Cormorant_Garamond, Outfit, Montserrat } from "next/font/google";
+import { Playfair_Display, Outfit, Montserrat } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "../src/context/CartContext";
 
-const cormorant = Cormorant_Garamond({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-cormorant",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-playfair",
 });
 
 const outfit = Outfit({
@@ -29,7 +29,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${outfit.variable} ${montserrat.variable} scroll-smooth`}>
+    <html lang="en" className={`${playfair.variable} ${outfit.variable} ${montserrat.variable} scroll-smooth`}>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -69,7 +69,7 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body className="bg-[#12081d] text-gray-100 font-sans antialiased selection:bg-[#8869AC] selection:text-white">
+      <body className="bg-primary-deep text-neutral-offwhite font-sans antialiased selection:bg-primary selection:text-neutral-white">
         <CartProvider>{children}</CartProvider>
       </body>
     </html>

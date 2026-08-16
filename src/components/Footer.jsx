@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Instagram, Facebook, Twitter, Linkedin, Send, CheckCircle2 } from "lucide-react";
-import ArabianLogo from "./ArabianLogo";
+import { Instagram, Facebook, Twitter, Linkedin, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export default function Footer({ onOpenDistributorModal }) {
   const [email, setEmail] = useState("");
@@ -19,126 +18,52 @@ export default function Footer({ onOpenDistributorModal }) {
     }
   };
 
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <footer className="bg-[#180d28] text-gray-200 font-sans border-t border-[#8869AC]/30 pt-16 pb-8 relative z-10">
+    <footer className="bg-primary-dark text-neutral-offwhite border-t border-primary-light/20 pt-24 pb-12 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-[#e3be5a]/15">
+        {/* TOP SECTION: BRAND STATEMENT & NEWSLETTER */}
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12 pb-16 border-b border-primary-light/20">
           
-          {/* COL 1: LOGO & ABOUT */}
-          <div className="lg:col-span-4 space-y-4">
-            <a href="#" className="flex items-center group py-1">
-              <ArabianLogo className="h-10 sm:h-12 w-auto" />
-            </a>
+          <div className="space-y-4 max-w-lg">
+            <h2 className="font-serif text-5xl sm:text-6xl text-neutral-white leading-none">
+              Real fruit.<br />
+              <span className="italic font-light text-accent">Arabian soul.</span>
+            </h2>
+          </div>
 
-            <p className="text-xs leading-relaxed text-gray-400 font-light max-w-sm">
-              India&apos;s premier natural pulp drink brand, crafted with pure Arabian essence and real fruit pulp.
+          <div className="w-full max-w-sm space-y-4">
+            <p className="text-sm font-sans font-light text-neutral-muted">
+              Subscribe to our journal for exclusive releases.
             </p>
-
-            {/* SOCIAL ICONS */}
-            <div className="flex items-center space-x-3 pt-2">
-              <a href="#" aria-label="Instagram" className="w-9 h-9 rounded-full bg-[#19092c] border border-[#e3be5a]/20 flex items-center justify-center text-gray-300 hover:text-[#12081d] hover:bg-[#e3be5a] hover:border-[#e3be5a] shadow-gold-glow transition-all">
-                <Instagram className="w-4 h-4" />
-              </a>
-              <a href="#" aria-label="Facebook" className="w-9 h-9 rounded-full bg-[#19092c] border border-[#e3be5a]/20 flex items-center justify-center text-gray-300 hover:text-[#12081d] hover:bg-[#e3be5a] hover:border-[#e3be5a] shadow-gold-glow transition-all">
-                <Facebook className="w-4 h-4" />
-              </a>
-              <a href="#" aria-label="Twitter" className="w-9 h-9 rounded-full bg-[#19092c] border border-[#e3be5a]/20 flex items-center justify-center text-gray-300 hover:text-[#12081d] hover:bg-[#e3be5a] hover:border-[#e3be5a] shadow-gold-glow transition-all">
-                <Twitter className="w-4 h-4" />
-              </a>
-              <a href="#" aria-label="LinkedIn" className="w-9 h-9 rounded-full bg-[#19092c] border border-[#e3be5a]/20 flex items-center justify-center text-gray-300 hover:text-[#12081d] hover:bg-[#e3be5a] hover:border-[#e3be5a] shadow-gold-glow transition-all">
-                <Linkedin className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-
-          {/* COL 2: QUICK LINKS */}
-          <div className="lg:col-span-2 space-y-3">
-            <h4 className="font-sans text-xs font-bold text-white uppercase tracking-widest">
-              QUICK LINKS
-            </h4>
-            <ul className="space-y-2 text-xs">
-              <li><a href="#hero" className="hover:text-[#e3be5a] transition-colors">Home</a></li>
-              <li><a href="#flavors" className="hover:text-[#e3be5a] transition-colors">Flavors</a></li>
-              <li><a href="#flavors" className="hover:text-[#e3be5a] transition-colors">Store</a></li>
-              <li><a href="#about" className="hover:text-[#e3be5a] transition-colors">About Us</a></li>
-              <li><a href="#blog" className="hover:text-[#e3be5a] transition-colors">Blog</a></li>
-            </ul>
-          </div>
-
-          {/* COL 3: HELP & SUPPORT */}
-          <div className="lg:col-span-2 space-y-3">
-            <h4 className="font-sans text-xs font-bold text-white uppercase tracking-widest">
-              HELP & SUPPORT
-            </h4>
-            <ul className="space-y-2 text-xs">
-              <li><a href="#" className="hover:text-[#e3be5a] transition-colors">FAQs</a></li>
-              <li><a href="#" className="hover:text-[#e3be5a] transition-colors">Shipping & Delivery</a></li>
-              <li><a href="#" className="hover:text-[#e3be5a] transition-colors">Returns & Refunds</a></li>
-              <li><a href="#" className="hover:text-[#e3be5a] transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-[#e3be5a] transition-colors">Terms & Conditions</a></li>
-            </ul>
-          </div>
-
-          {/* COL 4: DISTRIBUTOR NETWORK */}
-          <div className="lg:col-span-2 space-y-3">
-            <h4 className="font-sans text-xs font-bold text-white uppercase tracking-widest">
-              DISTRIBUTOR NETWORK
-            </h4>
-            <ul className="space-y-2 text-xs">
-              <li>
-                <button onClick={onOpenDistributorModal} className="hover:text-[#e3be5a] transition-colors text-left">
-                  Become a Distributor
-                </button>
-              </li>
-              <li>
-                <button onClick={onOpenDistributorModal} className="hover:text-[#e3be5a] transition-colors text-left">
-                  Distributor Login
-                </button>
-              </li>
-              <li>
-                <button onClick={onOpenDistributorModal} className="hover:text-[#e3be5a] transition-colors text-left">
-                  Find a Distributor
-                </button>
-              </li>
-              <li>
-                <button onClick={onOpenDistributorModal} className="hover:text-[#e3be5a] transition-colors text-left">
-                  Distributor Support
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* COL 5: NEWSLETTER */}
-          <div className="lg:col-span-2 space-y-3">
-            <h4 className="font-sans text-xs font-bold text-white uppercase tracking-widest">
-              NEWSLETTER
-            </h4>
-            <p className="text-xs text-gray-400 font-light leading-relaxed">
-              Subscribe to get updates on our latest flavors and offers.
-            </p>
-
             {subscribed ? (
-              <div className="p-3 rounded-xl bg-[#230d36] border border-[#e3be5a] text-[#e3be5a] text-xs flex items-center gap-2 shadow-gold-glow">
-                <CheckCircle2 className="w-4 h-4 shrink-0 text-[#e3be5a]" />
-                <span>Thank you for subscribing!</span>
+              <div className="py-3 text-accent text-sm flex items-center gap-3">
+                <CheckCircle2 className="w-5 h-5 stroke-[1.5]" />
+                <span>Thank you for subscribing.</span>
               </div>
             ) : (
-              <form onSubmit={handleSubscribe} className="flex">
+              <form onSubmit={handleSubscribe} className="flex border-b border-neutral-muted/40 focus-within:border-accent transition-colors">
                 <input
                   type="email"
                   required
-                  placeholder="Enter your email"
+                  placeholder="Email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-3 py-2 text-xs bg-[#19092c] border border-[#e3be5a]/30 rounded-l-xl text-white focus:outline-none focus:border-[#e3be5a]"
+                  className="w-full py-3 bg-transparent text-sm text-neutral-offwhite focus:outline-none placeholder:text-neutral-muted/60"
                 />
                 <button
                   type="submit"
                   aria-label="Subscribe"
-                  className="px-3.5 py-2 bg-gradient-to-r from-[#e3be5a] to-[#b8902c] text-[#12081d] font-bold rounded-r-xl hover:scale-105 transition-transform shadow-gold-glow"
+                  className="px-2 text-neutral-muted hover:text-accent transition-colors"
                 >
-                  <Send className="w-4 h-4 text-[#12081d]" />
+                  <ArrowRight className="w-5 h-5 stroke-[1.5]" />
                 </button>
               </form>
             )}
@@ -146,13 +71,61 @@ export default function Footer({ onOpenDistributorModal }) {
 
         </div>
 
+        {/* MIDDLE SECTION: LINKS */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-16">
+          
+          <div className="space-y-6">
+            <h4 className="font-sans text-xs font-medium text-neutral-white uppercase tracking-widest">
+              Explore
+            </h4>
+            <ul className="space-y-4 text-sm font-light text-neutral-muted">
+              <li><button onClick={() => scrollToSection("flavors")} className="hover:text-accent transition-colors">Flavors</button></li>
+              <li><button onClick={() => scrollToSection("about")} className="hover:text-accent transition-colors">Our Story</button></li>
+              <li><button onClick={() => scrollToSection("blog")} className="hover:text-accent transition-colors">Journal</button></li>
+            </ul>
+          </div>
+
+          <div className="space-y-6">
+            <h4 className="font-sans text-xs font-medium text-neutral-white uppercase tracking-widest">
+              Support
+            </h4>
+            <ul className="space-y-4 text-sm font-light text-neutral-muted">
+              <li><a href="#" className="hover:text-accent transition-colors">Contact</a></li>
+              <li><a href="#" className="hover:text-accent transition-colors">Shipping</a></li>
+              <li><a href="#" className="hover:text-accent transition-colors">Returns</a></li>
+            </ul>
+          </div>
+
+          <div className="space-y-6">
+            <h4 className="font-sans text-xs font-medium text-neutral-white uppercase tracking-widest">
+              Partners
+            </h4>
+            <ul className="space-y-4 text-sm font-light text-neutral-muted">
+              <li><button onClick={onOpenDistributorModal} className="hover:text-accent transition-colors">Become a Distributor</button></li>
+              <li><button onClick={onOpenDistributorModal} className="hover:text-accent transition-colors">Distributor Portal</button></li>
+            </ul>
+          </div>
+
+          <div className="space-y-6 flex flex-col items-start md:items-end">
+            <h4 className="font-sans text-xs font-medium text-neutral-white uppercase tracking-widest">
+              Socials
+            </h4>
+            <div className="flex items-center gap-6 text-neutral-muted">
+              <a href="#" aria-label="Instagram" className="hover:text-accent transition-colors"><Instagram className="w-5 h-5 stroke-[1.5]" /></a>
+              <a href="#" aria-label="Facebook" className="hover:text-accent transition-colors"><Facebook className="w-5 h-5 stroke-[1.5]" /></a>
+              <a href="#" aria-label="Twitter" className="hover:text-accent transition-colors"><Twitter className="w-5 h-5 stroke-[1.5]" /></a>
+              <a href="#" aria-label="LinkedIn" className="hover:text-accent transition-colors"><Linkedin className="w-5 h-5 stroke-[1.5]" /></a>
+            </div>
+          </div>
+
+        </div>
+
         {/* BOTTOM COPYRIGHT */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 font-light">
-          <p>© 2025 Arabian Pulp. All Rights Reserved.</p>
-          <div className="flex space-x-6 mt-4 sm:mt-0">
-            <a href="#" className="hover:text-gray-300">Privacy</a>
-            <a href="#" className="hover:text-gray-300">Terms</a>
-            <a href="#" className="hover:text-gray-300">Cookies</a>
+        <div className="pt-8 border-t border-primary-light/20 flex flex-col md:flex-row items-center justify-between text-xs text-neutral-muted font-light tracking-wide">
+          <p>© {new Date().getFullYear()} Arabian Pulp. All Rights Reserved.</p>
+          <div className="flex space-x-8 mt-4 md:mt-0">
+            <a href="#" className="hover:text-neutral-offwhite transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-neutral-offwhite transition-colors">Terms of Service</a>
           </div>
         </div>
 

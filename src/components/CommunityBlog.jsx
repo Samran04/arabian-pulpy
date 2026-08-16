@@ -10,79 +10,73 @@ export default function CommunityBlog() {
   const [storyOpen, setStoryOpen] = useState(false);
 
   return (
-    <section id="blog" className="py-20 bg-[#12081d] relative">
+    <section id="blog" className="py-24 bg-primary-dark relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           
           {/* LEFT STORY BLOCK */}
-          <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-28">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#341b52] border border-[#8869AC]/40 text-[#f5d77f] text-[11px] font-sans font-semibold tracking-[0.2em] uppercase">
-              <BookOpen className="w-3.5 h-3.5" />
-              <span>COMMUNITY HERITAGE</span>
-            </div>
-
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+          <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-32">
+            
+            <h2 className="font-serif text-4xl sm:text-5xl font-normal tracking-wide text-neutral-white leading-[1.1]">
               A Story from the Arabian Community
             </h2>
+            
+            <div className="h-[1px] w-12 bg-accent/40" />
 
-            <p className="text-gray-300 font-sans text-sm sm:text-base font-light leading-relaxed">
-              Born from a passion for purity and inspired by Arabian traditions, Arabian Pulp brings you closer to nature with every sip.
+            <p className="text-neutral-muted font-sans text-base font-light leading-relaxed">
+              Born from a passion for purity and inspired by Arabian traditions, Arabian Pulp brings you closer to nature with every sip. Discover our heritage and what makes our craft unique.
             </p>
 
             <div>
               <button
                 onClick={() => setStoryOpen(true)}
-                className="inline-flex items-center gap-2 text-xs font-sans font-bold tracking-[0.2em] uppercase text-[#f5d77f] hover:text-white border-b-2 border-[#8869AC] pb-1 transition-all group"
+                className="inline-flex items-center gap-3 text-xs font-sans tracking-widest uppercase text-accent hover:text-neutral-white transition-colors group"
               >
-                READ MORE
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                READ OUR ORIGINS
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform stroke-[1.5]" />
               </button>
             </div>
           </div>
 
           {/* RIGHT BLOG CARDS GRID */}
-          <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {BLOG_POSTS.map((post) => (
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12">
+            {BLOG_POSTS.slice(0, 4).map((post) => (
               <div
                 key={post.id}
-                className="group rounded-2xl bg-[#24133b] border border-[#8869AC]/35 overflow-hidden flex flex-col justify-between hover:border-[#8869AC] transition-all duration-400 hover:-translate-y-1.5 shadow-xl hover:shadow-primary-glow"
+                className="group flex flex-col cursor-pointer"
+                onClick={() => setSelectedPost(post)}
               >
                 
-                <div>
-                  {/* CARD IMAGE */}
-                  <div className="relative aspect-[4/3] bg-[#1a082c] overflow-hidden">
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      fill
-                      className="object-contain p-4 group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#12081d]/90 text-[#f5d77f] text-[10px] font-sans font-bold border border-[#e3be5a]/40 shadow-gold-glow">
-                      {post.readTime}
-                    </div>
-                  </div>
-
-                  {/* CARD TEXT */}
-                  <div className="p-5 space-y-2">
-                    <span className="text-[10px] text-[#e3be5a] font-sans tracking-widest uppercase font-semibold block">
-                      {post.subtext}
-                    </span>
-                    <h3 className="font-serif text-lg font-bold text-white group-hover:text-[#e3be5a] transition-colors leading-snug">
-                      {post.title}
-                    </h3>
-                  </div>
+                {/* CARD IMAGE */}
+                <div className="relative aspect-[4/3] overflow-hidden mb-6 rounded-md">
+                  <div className="absolute inset-0 bg-primary/20 mix-blend-multiply group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none" />
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  />
                 </div>
 
-                {/* CARD READ MORE BUTTON */}
-                <div className="px-5 pb-5 pt-2">
-                  <button
-                    onClick={() => setSelectedPost(post)}
-                    className="inline-flex items-center gap-2 text-xs font-sans font-bold text-[#e3be5a] hover:text-white transition-colors group-hover:translate-x-0.5"
-                  >
-                    READ MORE
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
+                {/* CARD TEXT */}
+                <div className="space-y-3">
+                  <span className="text-[10px] text-accent font-sans tracking-widest uppercase font-medium">
+                    {post.subtext}
+                  </span>
+                  <h3 className="font-serif text-2xl text-neutral-white group-hover:text-accent transition-colors leading-tight">
+                    {post.title}
+                  </h3>
+                  <p className="text-sm font-sans font-light text-neutral-muted line-clamp-2">
+                    {post.content.substring(0, 100)}...
+                  </p>
+                  
+                  <div className="pt-2">
+                    <span className="inline-flex items-center gap-2 text-xs font-sans tracking-widest uppercase text-neutral-offwhite transition-colors">
+                      READ MORE
+                      <ArrowRight className="w-3.5 h-3.5 stroke-[1.5]" />
+                    </span>
+                  </div>
                 </div>
 
               </div>
@@ -95,23 +89,23 @@ export default function CommunityBlog() {
 
       {/* FULL STORY MODAL */}
       {storyOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-xl animate-fadeIn">
-          <div className="relative w-full max-w-2xl bg-[#160a25] border border-[#e3be5a]/30 rounded-3xl p-8 space-y-6 text-gray-200 shadow-2xl max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary-dark/95 backdrop-blur-md animate-fadeIn overflow-y-auto">
+          <div className="relative w-full max-w-2xl bg-primary border border-primary-light/50 rounded-lg p-10 space-y-8 my-8 shadow-2xl">
             <button
               onClick={() => setStoryOpen(false)}
-              className="absolute top-6 right-6 p-2.5 rounded-full bg-[#2a133d] hover:bg-[#e3be5a] text-gray-300 hover:text-[#12081d] border border-[#e3be5a]/30 transition-all duration-300"
+              className="absolute top-8 right-8 p-2 text-neutral-muted hover:text-accent transition-colors duration-300"
             >
-              <X className="w-5 h-5" />
+              <X className="w-6 h-6 stroke-[1.5]" />
             </button>
 
-            <span className="text-xs text-[#e3be5a] font-sans tracking-[0.2em] uppercase font-bold">
+            <span className="text-xs text-accent font-sans tracking-widest uppercase font-medium">
               HERITAGE & ORIGINS
             </span>
-            <h3 className="font-serif text-3xl font-bold text-white">
+            <h3 className="font-serif text-3xl sm:text-4xl text-neutral-white">
               The Genesis of Arabian Pulp
             </h3>
 
-            <div className="space-y-4 text-sm text-gray-300 leading-relaxed font-light">
+            <div className="space-y-6 text-base text-neutral-muted leading-relaxed font-light">
               <p>
                 Centuries ago, along the historic trade routes of Arabia, travelers quenched their thirst with hand-crushed fruit infusions enriched with natural botanicals. 
               </p>
@@ -123,10 +117,10 @@ export default function CommunityBlog() {
               </p>
             </div>
 
-            <div className="pt-4 flex justify-end">
+            <div className="pt-6 flex justify-end border-t border-primary-light/30">
               <button
                 onClick={() => setStoryOpen(false)}
-                className="px-7 py-3 rounded-xl bg-gradient-to-r from-[#e3be5a] via-[#f5d77f] to-[#b8902c] text-[#12081d] font-sans font-bold text-xs tracking-wider uppercase hover:shadow-gold-glow transition-all"
+                className="px-8 py-3 text-accent hover:text-neutral-white font-sans text-xs tracking-widest uppercase transition-colors"
               >
                 CLOSE STORY
               </button>
@@ -137,38 +131,37 @@ export default function CommunityBlog() {
 
       {/* ARTICLE READER MODAL */}
       {selectedPost && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-xl animate-fadeIn">
-          <div className="relative w-full max-w-2xl bg-[#160a25] border border-[#e3be5a]/30 rounded-3xl p-8 space-y-6 text-gray-200 shadow-2xl max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary-dark/95 backdrop-blur-md animate-fadeIn overflow-y-auto">
+          <div className="relative w-full max-w-2xl bg-primary border border-primary-light/50 rounded-lg p-10 space-y-8 my-8 shadow-2xl">
             
             <button
               onClick={() => setSelectedPost(null)}
-              className="absolute top-6 right-6 p-2.5 rounded-full bg-[#2a133d] hover:bg-[#e3be5a] text-gray-300 hover:text-[#12081d] border border-[#e3be5a]/30 transition-all duration-300"
+              className="absolute top-8 right-8 p-2 text-neutral-muted hover:text-accent transition-colors duration-300"
             >
-              <X className="w-5 h-5" />
+              <X className="w-6 h-6 stroke-[1.5]" />
             </button>
 
-            <div className="space-y-2 border-b border-[#e3be5a]/20 pb-4">
-              <span className="text-xs text-[#e3be5a] font-sans tracking-[0.2em] uppercase font-bold">
+            <div className="space-y-4 border-b border-primary-light/30 pb-6">
+              <span className="text-xs text-accent font-sans tracking-widest uppercase font-medium">
                 {selectedPost.subtext}
               </span>
-              <h3 className="font-serif text-3xl font-bold text-white">
+              <h3 className="font-serif text-3xl sm:text-4xl text-neutral-white">
                 {selectedPost.title}
               </h3>
-              <div className="flex items-center gap-4 text-xs text-gray-400 pt-2 font-sans">
-                <span className="flex items-center gap-1"><User className="w-3.5 h-3.5 text-[#e3be5a]" /> {selectedPost.author}</span>
-                <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5 text-[#e3be5a]" /> {selectedPost.date}</span>
-                <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-[#e3be5a]" /> {selectedPost.readTime}</span>
+              <div className="flex items-center gap-6 text-xs text-neutral-muted pt-2 font-sans font-light uppercase tracking-wider">
+                <span className="flex items-center gap-2"><User className="w-3.5 h-3.5 text-accent stroke-[1.5]" /> {selectedPost.author}</span>
+                <span className="flex items-center gap-2"><Calendar className="w-3.5 h-3.5 text-accent stroke-[1.5]" /> {selectedPost.date}</span>
               </div>
             </div>
 
-            <div className="text-sm text-gray-300 leading-relaxed space-y-4 font-light whitespace-pre-line">
+            <div className="text-base text-neutral-muted leading-relaxed space-y-6 font-light whitespace-pre-line">
               {selectedPost.content}
             </div>
 
-            <div className="pt-4 flex justify-end">
+            <div className="pt-6 flex justify-end border-t border-primary-light/30">
               <button
                 onClick={() => setSelectedPost(null)}
-                className="px-7 py-3 rounded-xl bg-gradient-to-r from-[#e3be5a] via-[#f5d77f] to-[#b8902c] text-[#12081d] font-sans font-bold text-xs tracking-wider uppercase hover:shadow-gold-glow transition-all"
+                className="px-8 py-3 text-accent hover:text-neutral-white font-sans text-xs tracking-widest uppercase transition-colors"
               >
                 BACK TO BLOG
               </button>

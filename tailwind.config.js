@@ -10,57 +10,43 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#8869AC",
-          light: "#a88bc9",
-          dark: "#5e457f",
-          glow: "rgba(136, 105, 172, 0.4)",
+          DEFAULT: "#1F0B30", // Lighter shade of base
+          dark: "#13071E", // User requested base hex
+          light: "#2B0F43", // Lightest shade
+          deep: "#0A0310", // Deepest shade for contrast
         },
-        arabian: {
-          bg: "#12081d",
-          card: "#201233",
-          cardBorder: "rgba(136, 105, 172, 0.35)",
-          secondary: "#432a63",
-          secondaryDark: "#2f1b49",
-          primary: "#8869AC",
-          primaryLight: "#a88bc9",
-          primaryDark: "#5e457f",
-          gold: "#e3be5a",
-          goldLight: "#f5d77f",
-          goldDark: "#b8902c",
-          copper: "#AD765B",
-          copperLight: "#c88f73",
-          copperDark: "#8c5941",
-          purpleDark: "#0f0618",
-          purpleAccent: "#8869AC",
-          purpleGlow: "#50356d",
-          mango: "#f59e0b",
-          pomegranate: "#a21caf",
-          lychee: "#e11d48",
-          orange: "#ea580c",
-          mint: "#10b981",
-          grape: "#8b5cf6",
+        accent: {
+          DEFAULT: "#5E4377", // Muted Deep Purple
+          light: "#755990",
+        },
+        neutral: {
+          offwhite: "#F7F4F8",
+          white: "#FFFFFF",
+          dark: "#17131C",
+          muted: "#b39fa3", // Warm muted text matching garnet
+          border: "#4d1d28",
         },
       },
       fontFamily: {
-        serif: ["var(--font-cormorant)", "Georgia", "serif"],
+        serif: ["var(--font-playfair)", "Georgia", "serif"],
         sans: ["var(--font-outfit)", "system-ui", "sans-serif"],
         montserrat: ["var(--font-montserrat)", "Montserrat", "system-ui", "sans-serif"],
       },
       backgroundImage: {
-        "primary-gradient": "linear-gradient(135deg, #a88bc9 0%, #8869AC 50%, #6a4d8c 100%)",
-        "hero-glow": "radial-gradient(circle at 50% 30%, rgba(136, 105, 172, 0.45) 0%, rgba(18, 8, 29, 0.95) 70%)",
-        "gold-gradient": "linear-gradient(135deg, #f5d77f 0%, #e3be5a 50%, #b8902c 100%)",
-        "copper-gradient": "linear-gradient(135deg, #c88f73 0%, #AD765B 50%, #8c5941 100%)",
-        "btn-purple": "linear-gradient(135deg, #8869AC 0%, #6a4d8c 100%)",
-        "glass-card": "linear-gradient(180deg, rgba(136, 105, 172, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%)",
+        "primary-gradient": "linear-gradient(135deg, #2B0F43 0%, #13071E 50%, #0A0310 100%)",
+        "accent-gradient": "linear-gradient(135deg, #755990 0%, #5E4377 100%)",
+        "glass-card": "linear-gradient(180deg, rgba(43, 15, 67, 0.4) 0%, rgba(19, 7, 30, 0.8) 100%)",
       },
       boxShadow: {
-        "primary-glow": "0 0 30px rgba(136, 105, 172, 0.35)",
-        "gold-glow": "0 0 25px rgba(227, 190, 90, 0.25)",
-        "copper-glow": "0 0 25px rgba(173, 118, 91, 0.35)",
-        "purple-glow": "0 0 35px rgba(136, 105, 172, 0.4)",
+        "accent-glow": "0 0 25px rgba(197, 163, 235, 0.45)",
         "card-shadow": "0 20px 40px rgba(0, 0, 0, 0.4)",
       },
+      borderRadius: {
+        'sm': '6px',
+        'md': '8px',
+        'lg': '12px',
+        'xl': '14px',
+      }
     },
   },
   plugins: [],

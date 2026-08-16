@@ -2,18 +2,14 @@
 
 import React from "react";
 import Image from "next/image";
-import { Sparkles, Leaf, Citrus, ChevronRight } from "lucide-react";
-import { useCart } from "../context/CartContext";
-import RiveLightAnimation from "./RiveLightAnimation";
+import { ChevronRight } from "lucide-react";
 
 export default function Hero({ onExploreClick }) {
-  const { addToCart } = useCart();
-
   return (
-    <section id="hero" className="relative min-h-[80vh] md:min-h-[85vh] bg-[#12081d] overflow-hidden flex items-center justify-center pt-10 pb-16 md:pt-16 md:pb-24">
+    <section id="hero" className="relative min-h-[85vh] bg-primary-deep overflow-hidden flex items-center justify-center pt-32 pb-16 md:pt-40 md:pb-24">
 
-      {/* DESKTOP BACKGROUND IMAGE - HIGHER VISIBILITY */}
-      <div className="hidden md:block absolute inset-0 z-0 opacity-95 pointer-events-none">
+      {/* DESKTOP BACKGROUND IMAGE - Subtle ambient texture */}
+      <div className="hidden md:block absolute inset-0 z-0 opacity-15 pointer-events-none mix-blend-luminosity">
         <Image
           src="/assets/hero-bg.png"
           alt="Hero Background Desktop"
@@ -24,7 +20,7 @@ export default function Hero({ onExploreClick }) {
       </div>
 
       {/* MOBILE PORTRAIT BACKGROUND IMAGE */}
-      <div className="block md:hidden absolute inset-0 z-0 opacity-90 pointer-events-none">
+      <div className="block md:hidden absolute inset-0 z-0 opacity-15 pointer-events-none mix-blend-luminosity">
         <Image
           src="/assets/hero-bg-mobile.png"
           alt="Hero Background Mobile"
@@ -34,51 +30,74 @@ export default function Hero({ onExploreClick }) {
         />
       </div>
 
-      {/* RIVE VECTOR ANIMATION & INTERACTIVE LIGHT PARTICLES OVERLAY */}
-      <RiveLightAnimation />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary-deep via-primary-deep/80 to-transparent pointer-events-none z-0" />
 
-      {/* AMBIENT GLOW & SEAMLESS BACKDROP LIGHTING OVERLAYS */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[550px] bg-gradient-to-r from-[#8869AC]/35 via-[#432a63]/45 to-[#f5d77f]/15 blur-[140px] rounded-full pointer-events-none animate-pulse-slow z-0" />
-      
-      {/* DESKTOP BOTTLE HIGHLIGHT SPOTLIGHT GLO (RIGHT SIDE) */}
-      <div className="hidden md:block absolute top-1/2 right-[10%] -translate-y-1/2 w-[550px] h-[550px] bg-gradient-to-tr from-[#f5d77f]/30 via-[#8869AC]/35 to-transparent blur-[110px] rounded-full pointer-events-none animate-pulse-slow z-0" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
-      <div className="absolute inset-0 bg-gradient-to-b from-[#12081d]/50 via-transparent to-[#12081d]/80 md:from-[#12081d]/40 md:via-transparent md:to-[#12081d]/55 pointer-events-none z-0" />
+        {/* LEFT COLUMN: TYPOGRAPHY & CTA */}
+        <div className="flex flex-col items-start justify-center text-left space-y-6 sm:space-y-8 z-20">
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col items-start justify-center text-left space-y-4 sm:space-y-8 mt-0">
+          <div className="mb-10">
+            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight text-neutral-white leading-[1.2] drop-shadow-lg mb-6">
+              <span className="block text-accent italic font-light mb-2 text-3xl sm:text-4xl">Arabian Pulpy</span>
+              The Taste of Real Fruit.
+            </h1>
+            <p className="font-sans font-medium text-sm sm:text-base text-neutral-muted tracking-widest uppercase">
+              Authentic • Natural • Premium
+            </p>
+          </div>
 
-        {/* MAIN HEADINGS - MONTSERRAT MEDIUM FONT */}
-        <div className="space-y-3 sm:space-y-4 max-w-3xl">
-          <h1 className="font-montserrat font-medium text-4xl sm:text-7xl lg:text-8xl tracking-tight text-white leading-[1.1] uppercase">
-            Natural Pulp <br />
-            <span className="animate-gold-shimmer font-montserrat font-medium">
-              Drink
-            </span>
-          </h1>
-          <p className="font-montserrat font-medium text-lg sm:text-3xl text-[#e3be5a] tracking-wider uppercase">
-            Pure Arabian Essence
+          <p className="text-neutral-offwhite text-sm sm:text-lg max-w-md font-sans leading-relaxed font-light opacity-90">
+            Crafted from the finest hand-selected fruits and authentic real pulp, delivering an exquisite luxury experience in every sip. Inspired by tradition.
           </p>
+
+          <div className="pt-4">
+            <button
+              onClick={onExploreClick}
+              className="group relative inline-flex items-center justify-center px-10 h-14 rounded-md bg-accent/40 text-neutral-white border border-accent/50 font-sans font-bold text-xs sm:text-sm tracking-[0.2em] uppercase overflow-hidden hover:bg-accent/60 transition-all duration-300"
+            >
+              <span className="relative z-10 flex items-center gap-3">
+                EXPLORE FLAVORS
+                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform stroke-[2]" />
+              </span>
+            </button>
+          </div>
         </div>
 
-        {/* BODY DESCRIPTION */}
-        <p className="text-gray-200 text-sm sm:text-lg max-w-xl font-sans leading-relaxed font-light">
-          Crafted from the finest hand-selected fruits and authentic real pulp, delivering an exquisite luxury experience in every sip.
-        </p>
+        {/* RIGHT COLUMN: PRODUCT PHOTOGRAPHY */}
+        <div className="hidden md:flex h-[600px] w-full relative items-center justify-center">
 
-        {/* CTA BUTTON */}
-        <div className="pt-2 w-full sm:w-auto">
-          <button
-            onClick={onExploreClick}
-            className="group relative inline-flex items-center justify-center w-full sm:w-auto px-10 h-16 rounded-2xl bg-gradient-to-r from-[#e3be5a] via-[#f5d77f] to-[#b8902c] text-[#12081d] font-montserrat font-bold text-xs sm:text-sm tracking-[0.2em] uppercase overflow-hidden shadow-gold-glow hover:shadow-[0_0_40px_rgba(227,190,90,0.7)] hover:scale-105 transition-all duration-300 active:scale-100"
-          >
-            <span className="relative z-10 flex items-center gap-3 text-[#12081d]">
-              EXPLORE FLAVORS
-              <ChevronRight className="w-5 h-5 text-[#12081d] group-hover:translate-x-1 transition-transform" />
-            </span>
-            <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </button>
+          {/* Back Bottle - Pomegranate */}
+          <div className="absolute w-[220px] h-[450px] -left-8 top-12 opacity-80 rotate-[-15deg] filter grayscale animate-colorize-1 z-10">
+            <Image
+              src="/assets/pomegranate.png"
+              alt="Pomegranate Bottle"
+              fill
+              className="object-contain drop-shadow-2xl"
+            />
+          </div>
+
+          {/* Back Bottle - Mango */}
+          <div className="absolute w-[220px] h-[450px] -right-4 top-12 opacity-80 rotate-[15deg] filter grayscale animate-colorize-3 z-10">
+            <Image
+              src="/assets/mango.png"
+              alt="Mango Bottle"
+              fill
+              className="object-contain drop-shadow-2xl"
+            />
+          </div>
+
+          {/* Center Bottle - Grape (Hero) */}
+          <div className="absolute w-[280px] h-[550px] z-20 filter grayscale animate-colorize-2 transform hover:scale-105 transition-transform duration-700">
+            <Image
+              src="/assets/grape.png"
+              alt="Grape Bottle"
+              fill
+              className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+            />
+          </div>
+
         </div>
-
       </div>
     </section>
   );

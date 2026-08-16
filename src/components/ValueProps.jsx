@@ -8,61 +8,66 @@ export default function ValueProps() {
     {
       icon: Sparkles,
       title: "Authentic Taste",
-      desc: "Real fruit pulp delivers authentic and rich taste.",
+      desc: "Real fruit pulp meticulously prepared to deliver an authentic, rich profile.",
     },
     {
       icon: Citrus,
       title: "Real Fruit Pulp",
-      desc: "Made with real fruit pulp for natural goodness.",
+      desc: "Sourced from the finest orchards, bursting with natural goodness.",
     },
     {
       icon: HeartPulse,
       title: "Natural Ingredients",
-      desc: "No artificial colors or preservatives.",
+      desc: "Pure refreshment with absolutely no artificial colors or preservatives.",
     },
     {
       icon: ShieldCheck,
       title: "Quality Assurance",
-      desc: "Hygienically processed and quality tested.",
+      desc: "Crafted under rigorous hygienic standards for a premium experience.",
     },
   ];
 
   return (
-    <section id="about" className="py-16 bg-[#12081d] border-y border-[#8869AC]/30 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-[#8869AC]/15 via-transparent to-[#f5d77f]/5 pointer-events-none" />
+    <section id="about" className="py-24 md:py-32 bg-primary text-neutral-offwhite relative overflow-hidden">
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {props.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={index}
-                className="flex items-center gap-5 p-5 rounded-2xl bg-[#24133b] border border-[#8869AC]/35 hover:border-[#8869AC] hover:bg-[#321950] transition-all duration-400 group shadow-lg hover:shadow-primary-glow hover:-translate-y-1"
-              >
-                
-                {/* CIRCULAR BADGE ICON */}
-                <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-[#e3be5a] via-[#f5d77f] to-[#b8902c] p-[1.5px] shrink-0 flex items-center justify-center shadow-gold-glow group-hover:scale-110 transition-transform duration-300">
-                  <div className="w-full h-full rounded-full bg-[#12081d] flex items-center justify-center text-[#e3be5a] group-hover:text-[#f5d77f] transition-colors">
-                    <Icon className="w-6 h-6" />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          
+          {/* LEFT: EDITORIAL NARRATIVE */}
+          <div className="space-y-8 max-w-xl">
+            <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl uppercase tracking-wide leading-[1.1] text-neutral-white">
+              Real Fruit.<br />
+              Real Tradition.
+            </h2>
+            <div className="h-[1px] w-16 bg-accent/40" />
+            <p className="font-sans text-lg font-light leading-relaxed text-neutral-muted">
+              Arabian Pulp represents a bridge between heritage and contemporary luxury. We believe that true refreshment comes from nature itself. Every bottle is a testament to traditional preparation methods elevated for the modern palate, ensuring that the vibrant essence of real fruit is preserved in every drop.
+            </p>
+          </div>
+
+          {/* RIGHT: ELEGANT LIST (NO CARDS) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12 pt-4 lg:pt-0">
+            {props.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <div key={index} className="flex flex-col gap-4">
+                  <div className="text-accent">
+                    <Icon className="w-8 h-8 stroke-[1.5]" />
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="font-serif text-xl tracking-wide text-neutral-white">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm font-sans font-light leading-relaxed text-neutral-muted">
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
+              );
+            })}
+          </div>
 
-                {/* TEXT */}
-                <div className="space-y-1">
-                  <h4 className="font-serif text-lg font-bold text-white group-hover:text-[#e3be5a] transition-colors">
-                    {item.title}
-                  </h4>
-                  <p className="text-xs text-gray-400 font-sans leading-relaxed font-light">
-                    {item.desc}
-                  </p>
-                </div>
-
-              </div>
-            );
-          })}
         </div>
-
       </div>
     </section>
   );
