@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Instagram, Facebook, Twitter, Linkedin, ArrowRight, CheckCircle2 } from "lucide-react";
+import FadeInView from "./FadeInView";
 
 export default function Footer({ onOpenDistributorModal }) {
   const [email, setEmail] = useState("");
@@ -26,44 +27,44 @@ export default function Footer({ onOpenDistributorModal }) {
   };
 
   return (
-    <footer className="bg-primary-dark text-neutral-offwhite border-t border-primary-light/20 pt-24 pb-12 relative z-10">
+    <footer className="bg-primary-deep text-white border-t border-white/10 pt-24 pb-12 relative z-10">
+      <FadeInView>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* TOP SECTION: BRAND STATEMENT & NEWSLETTER */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12 pb-16 border-b border-primary-light/20">
+        {/* TOP SECTION: NEWSLETTER */}
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12 pb-16 border-b border-white/10">
           
           <div className="space-y-4 max-w-lg">
-            <h2 className="font-serif text-5xl sm:text-6xl text-neutral-white leading-none">
-              Real fruit.<br />
-              <span className="italic font-light text-accent">Arabian soul.</span>
+            <h4 className="font-sans text-xs font-medium text-white/50 uppercase tracking-widest">
+              Newsletter
+            </h4>
+            <h2 className="font-serif font-bold text-4xl sm:text-5xl text-white leading-tight">
+              Join the Arabian Pulpy Family
             </h2>
           </div>
 
-          <div className="w-full max-w-sm space-y-4">
-            <p className="text-sm font-sans font-light text-neutral-muted">
-              Subscribe to our journal for exclusive releases.
-            </p>
+          <div className="w-full max-w-md space-y-4">
             {subscribed ? (
-              <div className="py-3 text-accent text-sm flex items-center gap-3">
+              <div className="py-3 text-accent-light text-sm flex items-center gap-3">
                 <CheckCircle2 className="w-5 h-5 stroke-[1.5]" />
                 <span>Thank you for subscribing.</span>
               </div>
             ) : (
-              <form onSubmit={handleSubscribe} className="flex border-b border-neutral-muted/40 focus-within:border-accent transition-colors">
+              <form onSubmit={handleSubscribe} className="flex border-b border-white/30 focus-within:border-white transition-colors">
                 <input
                   type="email"
                   required
                   placeholder="Email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full py-3 bg-transparent text-sm text-neutral-offwhite focus:outline-none placeholder:text-neutral-muted/60"
+                  className="w-full py-3 bg-transparent text-sm text-white focus:outline-none placeholder:text-white/40"
                 />
                 <button
                   type="submit"
                   aria-label="Subscribe"
-                  className="px-2 text-neutral-muted hover:text-accent transition-colors"
+                  className="px-4 text-xs font-sans tracking-widest uppercase font-bold text-white hover:text-accent-light transition-colors"
                 >
-                  <ArrowRight className="w-5 h-5 stroke-[1.5]" />
+                  Subscribe
                 </button>
               </form>
             )}
@@ -71,65 +72,78 @@ export default function Footer({ onOpenDistributorModal }) {
 
         </div>
 
-        {/* MIDDLE SECTION: LINKS */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-16">
+        {/* MIDDLE SECTION: 5-COLUMNS */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 py-16">
           
-          <div className="space-y-6">
-            <h4 className="font-sans text-xs font-medium text-neutral-white uppercase tracking-widest">
-              Explore
-            </h4>
-            <ul className="space-y-4 text-sm font-light text-neutral-muted">
-              <li><button onClick={() => scrollToSection("flavors")} className="hover:text-accent transition-colors">Flavors</button></li>
-              <li><button onClick={() => scrollToSection("about")} className="hover:text-accent transition-colors">Our Story</button></li>
-              <li><button onClick={() => scrollToSection("blog")} className="hover:text-accent transition-colors">Journal</button></li>
-            </ul>
-          </div>
-
-          <div className="space-y-6">
-            <h4 className="font-sans text-xs font-medium text-neutral-white uppercase tracking-widest">
-              Support
-            </h4>
-            <ul className="space-y-4 text-sm font-light text-neutral-muted">
-              <li><a href="#" className="hover:text-accent transition-colors">Contact</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Shipping</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Returns</a></li>
-            </ul>
-          </div>
-
-          <div className="space-y-6">
-            <h4 className="font-sans text-xs font-medium text-neutral-white uppercase tracking-widest">
-              Partners
-            </h4>
-            <ul className="space-y-4 text-sm font-light text-neutral-muted">
-              <li><button onClick={onOpenDistributorModal} className="hover:text-accent transition-colors">Become a Distributor</button></li>
-              <li><button onClick={onOpenDistributorModal} className="hover:text-accent transition-colors">Distributor Portal</button></li>
-            </ul>
-          </div>
-
-          <div className="space-y-6 flex flex-col items-start md:items-end">
-            <h4 className="font-sans text-xs font-medium text-neutral-white uppercase tracking-widest">
-              Socials
-            </h4>
-            <div className="flex items-center gap-6 text-neutral-muted">
-              <a href="#" aria-label="Instagram" className="hover:text-accent transition-colors"><Instagram className="w-5 h-5 stroke-[1.5]" /></a>
-              <a href="#" aria-label="Facebook" className="hover:text-accent transition-colors"><Facebook className="w-5 h-5 stroke-[1.5]" /></a>
-              <a href="#" aria-label="Twitter" className="hover:text-accent transition-colors"><Twitter className="w-5 h-5 stroke-[1.5]" /></a>
-              <a href="#" aria-label="LinkedIn" className="hover:text-accent transition-colors"><Linkedin className="w-5 h-5 stroke-[1.5]" /></a>
+          {/* COLUMN 1: BRAND & SOCIALS */}
+          <div className="space-y-6 lg:col-span-1">
+            <h3 className="font-serif text-2xl font-bold tracking-tight text-white">
+              Arabian Pulpy
+            </h3>
+            <p className="text-xs font-sans font-light text-white/50">
+              © {new Date().getFullYear()} Arabian Pulpy. <br /> All Rights Reserved.
+            </p>
+            <div className="flex items-center gap-4 pt-2">
+              <a href="#" aria-label="Instagram" className="text-white/50 hover:text-white transition-colors"><Instagram className="w-5 h-5 stroke-[1.5]" /></a>
+              <a href="#" aria-label="Facebook" className="text-white/50 hover:text-white transition-colors"><Facebook className="w-5 h-5 stroke-[1.5]" /></a>
+              <a href="#" aria-label="Twitter" className="text-white/50 hover:text-white transition-colors"><Twitter className="w-5 h-5 stroke-[1.5]" /></a>
             </div>
           </div>
 
-        </div>
-
-        {/* BOTTOM COPYRIGHT */}
-        <div className="pt-8 border-t border-primary-light/20 flex flex-col md:flex-row items-center justify-between text-xs text-neutral-muted font-light tracking-wide">
-          <p>© {new Date().getFullYear()} Arabian Pulp. All Rights Reserved.</p>
-          <div className="flex space-x-8 mt-4 md:mt-0">
-            <a href="#" className="hover:text-neutral-offwhite transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-neutral-offwhite transition-colors">Terms of Service</a>
+          {/* COLUMN 2: SHOP */}
+          <div className="space-y-6">
+            <h4 className="font-sans text-[10px] font-bold text-white/50 uppercase tracking-widest">
+              Shop
+            </h4>
+            <ul className="space-y-4 text-sm font-light text-white/80">
+              <li><button onClick={() => scrollToSection("flavors")} className="hover:text-accent-light transition-colors">Pulpy Grape</button></li>
+              <li><button onClick={() => scrollToSection("flavors")} className="hover:text-accent-light transition-colors">Lychee with Nata de Coco</button></li>
+              <li><button onClick={() => scrollToSection("flavors")} className="hover:text-accent-light transition-colors">Basil Seeds Lemon</button></li>
+              <li><button onClick={() => scrollToSection("flavors")} className="hover:text-accent-light transition-colors">Grape Pouch (2.5L)</button></li>
+            </ul>
           </div>
-        </div>
 
+          {/* COLUMN 3: ABOUT US */}
+          <div className="space-y-6">
+            <h4 className="font-sans text-[10px] font-bold text-white/50 uppercase tracking-widest">
+              About Us
+            </h4>
+            <ul className="space-y-4 text-sm font-light text-white/80">
+              <li><button onClick={() => scrollToSection("about")} className="hover:text-accent-light transition-colors">Our Story</button></li>
+              <li><a href="#" className="hover:text-accent-light transition-colors">Sustainability</a></li>
+              <li><a href="#" className="hover:text-accent-light transition-colors">Careers</a></li>
+              <li><a href="#" className="hover:text-accent-light transition-colors">Press</a></li>
+            </ul>
+          </div>
+
+          {/* COLUMN 4: SUPPORT */}
+          <div className="space-y-6">
+            <h4 className="font-sans text-[10px] font-bold text-white/50 uppercase tracking-widest">
+              Support
+            </h4>
+            <ul className="space-y-4 text-sm font-light text-white/80">
+              <li><a href="#" className="hover:text-accent-light transition-colors">Contact Us</a></li>
+              <li><a href="#" className="hover:text-accent-light transition-colors">FAQ</a></li>
+              <li><a href="#" className="hover:text-accent-light transition-colors">Shipping & Returns</a></li>
+              <li><a href="#" className="hover:text-accent-light transition-colors">Track Order</a></li>
+            </ul>
+          </div>
+
+          {/* COLUMN 5: LEGAL */}
+          <div className="space-y-6">
+            <h4 className="font-sans text-[10px] font-bold text-white/50 uppercase tracking-widest">
+              Legal
+            </h4>
+            <ul className="space-y-4 text-sm font-light text-white/80">
+              <li><a href="#" className="hover:text-accent-light transition-colors">Privacy Policy</a></li>
+              <li><a href="#" className="hover:text-accent-light transition-colors">Terms of Service</a></li>
+              <li><a href="#" className="hover:text-accent-light transition-colors">Cookie Policy</a></li>
+            </ul>
+          </div>
+
+        </div>
       </div>
+      </FadeInView>
     </footer>
   );
 }

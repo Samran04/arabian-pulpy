@@ -69,7 +69,7 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body className="bg-primary-deep text-neutral-offwhite font-sans antialiased selection:bg-primary selection:text-neutral-white">
+      <body className="bg-primary text-neutral-dark font-sans antialiased selection:bg-accent selection:text-neutral-white">
         <CartProvider>{children}</CartProvider>
       </body>
     </html>

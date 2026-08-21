@@ -1,96 +1,109 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
-import { ArrowRight, BookOpen, X, Clock, User, Calendar } from "lucide-react";
-import { BLOG_POSTS } from "../data/blog";
+import { ArrowRight, X } from "lucide-react";
+import FadeInView from "./FadeInView";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 export default function CommunityBlog() {
-  const [selectedPost, setSelectedPost] = useState(null);
   const [storyOpen, setStoryOpen] = useState(false);
+  
+  // Parallax inertia scroll setup
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const physics = { damping: 15, mass: 0.1, stiffness: 55 };
+  
+  const rawY1 = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const rawY2 = useTransform(scrollYProgress, [0, 1], [150, -150]);
+  const rawY3 = useTransform(scrollYProgress, [0, 1], [250, -250]);
+
+  const y1 = useSpring(rawY1, physics);
+  const y2 = useSpring(rawY2, physics);
+  const y3 = useSpring(rawY3, physics);
 
   return (
-    <section id="blog" className="py-24 bg-primary-dark relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="blog" className="py-24 bg-primary-muted relative">
+      <FadeInView>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        {/* --- OUR STORY SECTION --- */}
+        <div ref={containerRef} className="flex flex-col lg:flex-row gap-16 relative items-start">
           
-          {/* LEFT STORY BLOCK */}
-          <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-32">
-            
-            <h2 className="font-serif text-4xl sm:text-5xl font-normal tracking-wide text-neutral-white leading-[1.1]">
-              A Story from the Arabian Community
+          {/* LEFT STORY TEXT (Sticky) */}
+          <div className="w-full lg:w-1/2 space-y-6 sticky top-32 pt-10">
+            <span className="text-[10px] font-sans font-bold tracking-widest uppercase text-accent">
+              Our Story
+            </span>
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold tracking-wide text-neutral-dark leading-[1.1]">
+              A Tradition of <br />
+              <span className="italic text-accent font-light">Purity & Passion</span>
             </h2>
             
-            <div className="h-[1px] w-12 bg-accent/40" />
-
-            <p className="text-neutral-muted font-sans text-base font-light leading-relaxed">
+            <p className="text-neutral-muted font-sans text-sm font-light leading-relaxed max-w-md">
               Born from a passion for purity and inspired by Arabian traditions, Arabian Pulp brings you closer to nature with every sip. Discover our heritage and what makes our craft unique.
             </p>
 
-            <div>
+            <div className="pt-2 hidden lg:block">
               <button
                 onClick={() => setStoryOpen(true)}
-                className="inline-flex items-center gap-3 text-xs font-sans tracking-widest uppercase text-accent hover:text-neutral-white transition-colors group"
+                className="inline-flex items-center gap-3 px-8 py-3 bg-accent text-white font-sans text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-accent-light transition-all duration-300 rounded-md shadow-md"
               >
-                READ OUR ORIGINS
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform stroke-[1.5]" />
+                READ OUR STORY
+                <ArrowRight className="w-4 h-4 stroke-[2]" />
               </button>
+            </div>
+
+            {/* INLINE STORY FOR MOBILE */}
+            <div className="lg:hidden bg-[#A873B8] rounded-3xl p-6 sm:p-8 shadow-sm border border-white/20 space-y-6 text-sm text-white leading-relaxed font-light mt-8">
+              <p className="font-medium text-white text-base drop-shadow-sm">
+                <TypewriterText text="Good fruit deserves to be tasted as it is." delay={0.1} />
+              </p>
+              <p>
+                <TypewriterText text="Arabian Pulp began with a simple idea — to bring the richness of real fruit into every refreshing sip." delay={0.5} />
+              </p>
+              <p>
+                <TypewriterText text="From the beginning, our focus has been on one thing: real fruit, honest flavour, and a taste worth sharing." delay={1.5} />
+              </p>
+              <p>
+                <TypewriterText text="Inspired by the warmth of Arabian hospitality and the abundance of tropical fruit, we create beverages that celebrate familiar flavours in a refreshing way — from juicy grapes and delicate lychees to zesty citrus and basil seeds." delay={2.5} />
+              </p>
+              <p>
+                <TypewriterText text="We believe great taste doesn't need to be complicated. It starts with carefully selected ingredients, thoughtful preparation, and a commitment to preserving what makes each fruit special." delay={4.0} />
+              </p>
+              <p>
+                <TypewriterText text="Today, Arabian Pulp brings that philosophy to every cup and pouch — made for family tables, shared moments, and everyday refreshment." delay={5.5} />
+              </p>
+              <p className="font-sans font-bold tracking-wide text-white pt-4 border-t border-white/30">
+                <TypewriterText text="Real fruit. Real flavour. Made to be shared." delay={7.0} />
+              </p>
             </div>
           </div>
 
-          {/* RIGHT BLOG CARDS GRID */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-12">
-            {BLOG_POSTS.slice(0, 4).map((post) => (
-              <div
-                key={post.id}
-                className="group flex flex-col cursor-pointer"
-                onClick={() => setSelectedPost(post)}
-              >
-                
-                {/* CARD IMAGE */}
-                <div className="relative aspect-[4/3] overflow-hidden mb-6 rounded-md">
-                  <div className="absolute inset-0 bg-primary/20 mix-blend-multiply group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none" />
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    className="object-cover transform group-hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
-
-                {/* CARD TEXT */}
-                <div className="space-y-3">
-                  <span className="text-[10px] text-accent font-sans tracking-widest uppercase font-medium">
-                    {post.subtext}
-                  </span>
-                  <h3 className="font-serif text-2xl text-neutral-white group-hover:text-accent transition-colors leading-tight">
-                    {post.title}
-                  </h3>
-                  <p className="text-sm font-sans font-light text-neutral-muted line-clamp-2">
-                    {post.content.substring(0, 100)}...
-                  </p>
-                  
-                  <div className="pt-2">
-                    <span className="inline-flex items-center gap-2 text-xs font-sans tracking-widest uppercase text-neutral-offwhite transition-colors">
-                      READ MORE
-                      <ArrowRight className="w-3.5 h-3.5 stroke-[1.5]" />
-                    </span>
-                  </div>
-                </div>
-
-              </div>
-            ))}
+          {/* RIGHT STORY IMAGES (Stacked vertically, hidden on mobile) */}
+          <div className="hidden lg:flex w-full lg:w-1/2 flex-col gap-24 py-10">
+            <motion.div style={{ y: y1 }} className="relative aspect-[4/5] w-full max-w-md mx-auto rounded-2xl overflow-hidden bg-white shadow-xl border border-neutral-border/20 flex items-center justify-center">
+               <Image src="/assets/grape-cup.png" alt="Story" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-contain p-12 hover:scale-105 transition-transform duration-700" />
+            </motion.div>
+            <motion.div style={{ y: y2 }} className="relative aspect-[4/5] w-full max-w-md mx-auto rounded-2xl overflow-hidden bg-white shadow-xl border border-neutral-border/20 flex items-center justify-center">
+               <Image src="/assets/basil-seeds.png" alt="Story" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-contain p-12 hover:scale-105 transition-transform duration-700" />
+            </motion.div>
+            <motion.div style={{ y: y3 }} className="relative aspect-[4/5] w-full max-w-md mx-auto rounded-2xl overflow-hidden bg-white shadow-xl border border-neutral-border/20 flex items-center justify-center">
+               <Image src="/assets/lychee-cup.png" alt="Story" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-contain p-12 hover:scale-105 transition-transform duration-700" />
+            </motion.div>
           </div>
-
         </div>
-
       </div>
+      </FadeInView>
 
       {/* FULL STORY MODAL */}
       {storyOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary-dark/95 backdrop-blur-md animate-fadeIn overflow-y-auto">
-          <div className="relative w-full max-w-2xl bg-primary border border-primary-light/50 rounded-lg p-10 space-y-8 my-8 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-dark/80 backdrop-blur-md animate-fadeIn overflow-y-auto">
+          <div className="relative w-full max-w-2xl bg-white border border-neutral-border rounded-2xl p-10 space-y-8 my-8 shadow-2xl">
             <button
               onClick={() => setStoryOpen(false)}
               className="absolute top-8 right-8 p-2 text-neutral-muted hover:text-accent transition-colors duration-300"
@@ -101,76 +114,75 @@ export default function CommunityBlog() {
             <span className="text-xs text-accent font-sans tracking-widest uppercase font-medium">
               HERITAGE & ORIGINS
             </span>
-            <h3 className="font-serif text-3xl sm:text-4xl text-neutral-white">
-              The Genesis of Arabian Pulp
+            <h3 className="font-serif font-bold text-3xl sm:text-4xl text-neutral-dark">
+              The Story Behind Arabian Pulp
             </h3>
 
             <div className="space-y-6 text-base text-neutral-muted leading-relaxed font-light">
-              <p>
-                Centuries ago, along the historic trade routes of Arabia, travelers quenched their thirst with hand-crushed fruit infusions enriched with natural botanicals. 
+              <p className="font-medium text-neutral-dark text-lg">
+                Good fruit deserves to be tasted as it is.
               </p>
               <p>
-                Inspired by this timeless legacy, Arabian Pulp was founded with a single mission: to resurrect pure, unadulterated fruit pulp drinks that carry authentic flavor, natural nourishment, and generous Arabian hospitality.
+                Arabian Pulp began with a simple idea — to bring the richness of real fruit into every refreshing sip.
               </p>
               <p>
-                We work directly with generational fruit farmers, harvesting sun-ripened Alphonso mangoes, ruby pomegranates, succulent lychees, and fragrant mint leaves. Every bottle is crafted with state-of-the-art hygienic cold extraction that seals in the rich texture of real fruit cells.
+                From the beginning, our focus has been on one thing: real fruit, honest flavour, and a taste worth sharing.
+              </p>
+              <p>
+                Inspired by the warmth of Arabian hospitality and the abundance of tropical fruit, we create beverages that celebrate familiar flavours in a refreshing way — from juicy grapes and delicate lychees to zesty citrus and basil seeds.
+              </p>
+              <p>
+                We believe great taste doesn't need to be complicated. It starts with carefully selected ingredients, thoughtful preparation, and a commitment to preserving what makes each fruit special.
+              </p>
+              <p>
+                Today, Arabian Pulp brings that philosophy to every cup and pouch — made for family tables, shared moments, and everyday refreshment.
               </p>
             </div>
 
-            <div className="pt-6 flex justify-end border-t border-primary-light/30">
+            <div className="pt-8 border-t border-neutral-border flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+              <p className="font-sans font-bold tracking-wide text-neutral-dark">
+                Real fruit. Real flavour. Made to be shared.
+              </p>
               <button
                 onClick={() => setStoryOpen(false)}
-                className="px-8 py-3 text-accent hover:text-neutral-white font-sans text-xs tracking-widest uppercase transition-colors"
+                className="px-6 py-2 text-accent hover:text-neutral-dark font-sans text-xs tracking-widest uppercase transition-colors inline-flex items-center gap-2"
               >
-                CLOSE STORY
+                CLOSE STORY <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* ARTICLE READER MODAL */}
-      {selectedPost && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary-dark/95 backdrop-blur-md animate-fadeIn overflow-y-auto">
-          <div className="relative w-full max-w-2xl bg-primary border border-primary-light/50 rounded-lg p-10 space-y-8 my-8 shadow-2xl">
-            
-            <button
-              onClick={() => setSelectedPost(null)}
-              className="absolute top-8 right-8 p-2 text-neutral-muted hover:text-accent transition-colors duration-300"
-            >
-              <X className="w-6 h-6 stroke-[1.5]" />
-            </button>
-
-            <div className="space-y-4 border-b border-primary-light/30 pb-6">
-              <span className="text-xs text-accent font-sans tracking-widest uppercase font-medium">
-                {selectedPost.subtext}
-              </span>
-              <h3 className="font-serif text-3xl sm:text-4xl text-neutral-white">
-                {selectedPost.title}
-              </h3>
-              <div className="flex items-center gap-6 text-xs text-neutral-muted pt-2 font-sans font-light uppercase tracking-wider">
-                <span className="flex items-center gap-2"><User className="w-3.5 h-3.5 text-accent stroke-[1.5]" /> {selectedPost.author}</span>
-                <span className="flex items-center gap-2"><Calendar className="w-3.5 h-3.5 text-accent stroke-[1.5]" /> {selectedPost.date}</span>
-              </div>
-            </div>
-
-            <div className="text-base text-neutral-muted leading-relaxed space-y-6 font-light whitespace-pre-line">
-              {selectedPost.content}
-            </div>
-
-            <div className="pt-6 flex justify-end border-t border-primary-light/30">
-              <button
-                onClick={() => setSelectedPost(null)}
-                className="px-8 py-3 text-accent hover:text-neutral-white font-sans text-xs tracking-widest uppercase transition-colors"
-              >
-                BACK TO BLOG
-              </button>
-            </div>
-
-          </div>
-        </div>
-      )}
 
     </section>
   );
 }
+
+const TypewriterText = ({ text, delay = 0 }) => {
+  const words = text.split(" ");
+  return (
+    <motion.span
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, margin: "-50px" }}
+      variants={{
+        visible: { transition: { staggerChildren: 0.03, delayChildren: delay } },
+        hidden: {}
+      }}
+    >
+      {words.map((word, i) => (
+        <motion.span
+          key={i}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1 }
+          }}
+          className="inline-block mr-1"
+        >
+          {word}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+};

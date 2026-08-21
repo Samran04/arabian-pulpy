@@ -5,14 +5,14 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    background-color: #0A0310; /* Primary Deep */
-    color: #F7F4F8; /* Off-White */
+    background-color: #FDFBF9; /* Cream */
+    color: #1A0D23; /* Dark Grape */
     font-family: var(--font-outfit), system-ui, sans-serif;
   }
 
   body {
     overflow-x: hidden;
-    background-color: #0A0310;
+    background-color: #FDFBF9;
   }
 }
 
@@ -57,16 +57,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0A0310; /* Primary Deep */
+  background: #F4EEEB; /* Primary Dark (Cream) */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1F0B30; /* Primary */
+  background: #E8DFE5; /* Border Color */
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #5E4377; /* Accent Deep Purple */
+  background: #854AA8; /* Accent light */
 }
 
 /* EDITORIAL / LUXURY UTILITIES */
@@ -90,10 +90,10 @@
 
 /* GLASSMORPHISM & RESTRAINED CARDS */
 .glass-panel {
-  background: rgba(19, 7, 30, 0.6); /* Primary Dark transparent */
+  background: rgba(253, 251, 249, 0.6); /* Cream transparent */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(229, 224, 234, 0.1);
+  border: 1px solid rgba(133, 74, 168, 0.1);
 }
 
 .glass-panel-hover {
@@ -101,18 +101,18 @@
 }
 
 .glass-panel-hover:hover {
-  background: rgba(31, 11, 48, 0.8);
-  border-color: rgba(94, 67, 119, 0.3); /* Purple subtle highlight */
+  background: rgba(253, 251, 249, 0.9);
+  border-color: rgba(107, 60, 138, 0.3); /* Purple subtle highlight */
 }
 
 /* CUSTOM SELECTION & FOCUS STATES */
 *:focus-visible {
-  outline: 2px solid #5E4377 !important; /* Purple focus */
+  outline: 2px solid #6B3C8A !important; /* Purple focus */
   outline-offset: 2px;
 }
 
 /* TEXT SELECTION */
 ::selection {
-  background-color: #1F0B30;
-  color: #F7F4F8;
+  background-color: #6B3C8A;
+  color: #FFFFFF;
 }
