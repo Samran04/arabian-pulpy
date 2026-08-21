@@ -27,18 +27,23 @@ export default function CommunityBlog() {
   const y3 = useSpring(rawY3, physics);
 
   return (
-    <section id="blog" className="py-24 bg-primary-muted relative">
+    <section id="blog" className="pt-12 pb-24 lg:py-24 bg-primary-muted relative">
       <FadeInView>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 lg:space-y-32">
         
         {/* --- OUR STORY SECTION --- */}
         <div ref={containerRef} className="flex flex-col lg:flex-row gap-16 relative items-start">
           
           {/* LEFT STORY TEXT (Sticky) */}
-          <div className="w-full lg:w-1/2 space-y-6 sticky top-32 pt-10">
-            <span className="text-[10px] font-sans font-bold tracking-widest uppercase text-accent">
-              Our Story
-            </span>
+          <div className="w-full lg:w-1/2 space-y-6 sticky top-32 pt-10 flex flex-col items-center text-center lg:items-start lg:text-left">
+            <div className="flex flex-col items-center lg:items-start text-accent pb-4 lg:pb-2">
+              <span className="font-montserrat text-6xl sm:text-7xl lg:text-4xl font-black uppercase leading-[0.85] tracking-tighter">
+                OUR
+              </span>
+              <span className="font-montserrat text-6xl sm:text-7xl lg:text-4xl font-black uppercase leading-[0.85] tracking-tighter">
+                STORY
+              </span>
+            </div>
             <h2 className="font-serif text-4xl sm:text-5xl font-bold tracking-wide text-neutral-dark leading-[1.1]">
               A Tradition of <br />
               <span className="italic text-accent font-light">Purity & Passion</span>

@@ -27,32 +27,24 @@ export default function FlavorsSection({ onSelectFlavor }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* SECTION HEADER */}
-        <FadeInView className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-8">
-          
-          {/* Left side */}
-          <div className="space-y-4">
-            <h4 className="text-accent font-sans font-bold text-xs tracking-widest uppercase">
-              Our Collection
-            </h4>
-            <h2 className="font-serif font-bold text-4xl sm:text-5xl text-neutral-dark tracking-tight">
-              Pure. Natural. Irresistible.
-            </h2>
-          </div>
-          
-          {/* Right side */}
-          <div className="flex flex-col space-y-4 max-w-sm">
-            <p className="text-neutral-muted font-sans text-sm font-light leading-relaxed">
-              A curated selection of natural pulp beverages, crafted to delight every taste.
-            </p>
-            <div className="hidden sm:block">
-              <button
-                onClick={() => setShowAll(!showAll)}
-                className="inline-flex items-center gap-3 px-6 py-3 border border-neutral-border text-neutral-dark font-sans text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase hover:bg-neutral-dark hover:text-white transition-all duration-300 rounded-md"
-              >
-                <span>{showAll ? "SHOW FEWER" : `VIEW ALL PRODUCTS`}</span>
-                <ArrowRight className="w-4 h-4 stroke-[2]" />
-              </button>
-            </div>
+        <FadeInView className="flex flex-col items-center text-center mb-16 gap-4 max-w-2xl mx-auto">
+          <h4 className="text-accent font-sans font-black text-2xl sm:text-3xl tracking-widest uppercase">
+            Our Flavours
+          </h4>
+          <h2 className="font-serif font-bold text-4xl sm:text-5xl text-neutral-dark tracking-tight">
+            Pure. Natural. Irresistible.
+          </h2>
+          <p className="text-neutral-muted font-sans text-sm font-light leading-relaxed pt-2">
+            A curated selection of natural pulp beverages, crafted to delight every taste.
+          </p>
+          <div className="hidden sm:block pt-4">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="inline-flex items-center gap-3 px-6 py-3 bg-[#3D245B] border border-transparent text-white font-sans text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase hover:bg-[#2A1940] transition-all duration-300 rounded-md shadow-sm"
+            >
+              <span>{showAll ? "SHOW FEWER" : `VIEW ALL PRODUCTS`}</span>
+              <ArrowRight className="w-4 h-4 stroke-[2]" />
+            </button>
           </div>
         </FadeInView>
 
@@ -66,13 +58,13 @@ export default function FlavorsSection({ onSelectFlavor }) {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false, margin: "-100px" }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className={`group cursor-pointer bg-white p-4 rounded-3xl shadow-sm border border-neutral-border/40 hover:shadow-md transition-shadow ${!showAll && index >= 2 ? 'hidden sm:flex flex-col' : 'flex flex-col'}`}
+                className={`group cursor-pointer bg-white p-4 rounded-[7px] shadow-sm border border-neutral-border/40 hover:shadow-md transition-shadow ${!showAll && index >= 2 ? 'hidden sm:flex flex-col' : 'flex flex-col'}`}
                 onClick={() => onSelectFlavor(flavor)}
               >
                 
                 {/* PRODUCT IMAGE CONTAINER */}
                 <div 
-                  className="relative aspect-square mb-6 rounded-2xl overflow-hidden flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2"
+                  className="relative aspect-square mb-6 rounded-[7px] overflow-hidden flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2"
                   style={{ backgroundColor: flavor.pastelBg || '#f3f4f6' }}
                 >
                   <Image
@@ -120,7 +112,7 @@ export default function FlavorsSection({ onSelectFlavor }) {
         <div className="mt-12 flex justify-center sm:hidden">
           <button
             onClick={() => setShowAll(!showAll)}
-            className="inline-flex items-center gap-3 px-8 py-3 border border-neutral-border text-neutral-dark font-sans text-xs font-bold tracking-[0.2em] uppercase hover:bg-neutral-dark hover:text-white transition-all duration-300 rounded-md w-full justify-center"
+            className="inline-flex items-center gap-3 px-8 py-3 bg-[#3D245B] border border-transparent text-white font-sans text-xs font-bold tracking-[0.2em] uppercase hover:bg-[#2A1940] transition-all duration-300 rounded-md w-full justify-center shadow-sm"
           >
             <span>{showAll ? "SHOW FEWER" : `VIEW ALL PRODUCTS`}</span>
             <ArrowRight className="w-4 h-4 stroke-[2]" />

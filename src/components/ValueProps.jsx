@@ -9,22 +9,22 @@ import FadeInView from "./FadeInView";
 export default function ValueProps() {
   const props = [
     {
-      icon: Sparkles,
+      image: "/assets/vp_authentic_taste.jpg",
       title: "Authentic Taste",
       desc: "Real fruit pulp meticulously prepared to deliver an authentic, rich profile.",
     },
     {
-      icon: Citrus,
+      image: "/assets/vp_real_fruit.jpg",
       title: "Real Fruit Pulp",
       desc: "Sourced from the finest orchards, bursting with natural goodness.",
     },
     {
-      icon: HeartPulse,
+      image: "/assets/vp_natural_ingredients.jpg",
       title: "Natural Ingredients",
       desc: "Pure refreshment with absolutely no artificial colors or preservatives.",
     },
     {
-      icon: ShieldCheck,
+      image: "/assets/vp_quality.jpg",
       title: "Quality Assurance",
       desc: "Crafted under rigorous hygienic standards for a premium experience.",
     },
@@ -43,11 +43,11 @@ export default function ValueProps() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-8 items-start">
+        <div className="flex flex-col gap-12 lg:gap-16">
           
-          {/* LEFT: TITLE */}
-          <FadeInView className="w-full lg:w-1/4 shrink-0 space-y-4">
-            <h4 className="text-accent font-sans font-bold text-[10px] tracking-widest uppercase">
+          {/* HEADER */}
+          <FadeInView className="w-full text-center space-y-4 max-w-2xl mx-auto">
+            <h4 className="text-accent font-sans font-black text-2xl sm:text-3xl tracking-widest uppercase">
               Why Arabian Pulpy?
             </h4>
             <h2 className="font-serif font-bold text-4xl sm:text-5xl text-neutral-dark tracking-tight leading-[1.1]">
@@ -56,27 +56,30 @@ export default function ValueProps() {
             </h2>
           </FadeInView>
 
-          {/* RIGHT: 4 ITEMS HORIZONTALLY */}
-          <div className="w-full lg:w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+          {/* RIGHT: 4 ITEMS GRID */}
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {props.map((item, index) => {
-              const Icon = item.icon;
               return (
                 <motion.div 
                   key={index} 
-                  initial={{ opacity: 0, x: -40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: false, margin: "-50px" }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="flex flex-col gap-4"
+                  transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+                  className="flex flex-col rounded-[7px] p-6 sm:p-8 shadow-sm hover:shadow-xl transition-all duration-500 border border-neutral-border/20 group relative overflow-hidden h-48 sm:h-56 lg:h-64 justify-center items-center"
                 >
-                  <div className="text-accent">
-                    <Icon className="w-7 h-7 stroke-[1.5]" />
+                  {/* BACKGROUND IMAGE & OVERLAY */}
+                  <div className="absolute inset-0 z-0 overflow-hidden rounded-[7px]">
+                    <Image src={item.image} alt={item.title} fill className="object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out" />
+                    <div className="absolute inset-0 bg-[#CBA3D5]/85 group-hover:bg-[#CBA3D5]/70 transition-colors duration-500 mix-blend-multiply" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#CBA3D5]/90 to-transparent" />
                   </div>
-                  <div className="space-y-2">
-                    <h4 className="font-serif text-lg tracking-wide text-neutral-dark font-medium">
+                  
+                  <div className="space-y-2 sm:space-y-3 relative z-10 text-center transform group-hover:-translate-y-2 transition-transform duration-500">
+                    <h4 className="font-serif text-2xl sm:text-3xl lg:text-3xl tracking-wide text-white font-bold">
                       {item.title}
                     </h4>
-                    <p className="text-xs font-sans font-light leading-relaxed text-neutral-muted">
+                    <p className="text-xs sm:text-sm font-sans font-light leading-relaxed text-[#F2EAF9] opacity-90 max-w-[250px] mx-auto">
                       {item.desc}
                     </p>
                   </div>
