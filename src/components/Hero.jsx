@@ -41,10 +41,10 @@ export default function Hero({ onExploreClick }) {
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex flex-col items-start justify-center text-left space-y-6 sm:space-y-8 z-20"
+          className="flex flex-col items-start justify-center text-left space-y-4 sm:space-y-5 z-20"
         >
 
-          <div className="mb-6">
+          <div className="mb-2">
             <h1 className="font-serif font-bold text-5xl sm:text-6xl lg:text-7xl tracking-tight text-neutral-dark leading-[1.1] mb-6">
               The Taste of
               <span className="block text-accent italic font-light mt-1">Real Fruit.</span>
@@ -58,7 +58,7 @@ export default function Hero({ onExploreClick }) {
             Crafted from the finest hand-selected fruits and authentic real pulp, delivering an exquisite luxury experience in every sip. Inspired by tradition.
           </p>
 
-          <div className="pt-4">
+          <div className="pt-0">
             <button
               onClick={onExploreClick}
               className="group relative inline-flex items-center justify-center px-8 h-12 rounded-full bg-accent text-white font-sans font-medium text-xs sm:text-sm tracking-wider uppercase overflow-hidden hover:bg-accent-light transition-all duration-300"

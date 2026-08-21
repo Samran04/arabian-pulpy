@@ -71,8 +71,8 @@ export default function ValueProps() {
                   {/* BACKGROUND IMAGE & OVERLAY */}
                   <div className="absolute inset-0 z-0 overflow-hidden rounded-[7px]">
                     <Image src={item.image} alt={item.title} fill className="object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out" />
-                    <div className="absolute inset-0 bg-[#CBA3D5]/85 group-hover:bg-[#CBA3D5]/70 transition-colors duration-500 mix-blend-multiply" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#CBA3D5]/90 to-transparent" />
+                    <div className="absolute inset-0 bg-[#5C535F]/95 group-hover:bg-[#5C535F]/90 transition-colors duration-500 mix-blend-multiply" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#5C535F] to-transparent" />
                   </div>
                   
                   <div className="space-y-2 sm:space-y-3 relative z-10 text-center transform group-hover:-translate-y-2 transition-transform duration-500">
