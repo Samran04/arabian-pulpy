@@ -34,8 +34,8 @@ export default function CommunityBlog() {
         {/* --- OUR STORY SECTION --- */}
         <div ref={containerRef} className="flex flex-col lg:flex-row gap-16 relative items-start">
           
-          {/* LEFT STORY TEXT (Sticky) */}
-          <div className="w-full lg:w-1/2 space-y-6 sticky top-[25vh] lg:top-[30vh] flex flex-col items-center text-center lg:items-start lg:text-left">
+          {/* LEFT STORY TEXT (Sticky on Desktop) */}
+          <div className="w-full lg:w-1/2 space-y-6 relative lg:sticky lg:top-[30vh] flex flex-col items-center text-center lg:items-start lg:text-left">
             <div className="flex flex-col items-center lg:items-start text-accent pb-4 lg:pb-2">
               <span className="font-montserrat text-6xl sm:text-7xl lg:text-4xl font-black uppercase leading-[0.85] tracking-tighter">
                 OUR

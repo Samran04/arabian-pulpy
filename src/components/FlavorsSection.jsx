@@ -50,7 +50,7 @@ export default function FlavorsSection({ onSelectFlavor, flavors = [] }) {
                 viewport={{ once: false, margin: "-100px" }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 onClick={() => onSelectFlavor(flavor)}
-                className={`group cursor-pointer bg-white p-4 rounded-[7px] shadow-sm border border-neutral-border/40 hover:shadow-md transition-shadow flex flex-col`}
+                className={`group cursor-pointer bg-white p-4 rounded-[7px] shadow-sm border border-neutral-border/40 hover:shadow-md transition-shadow ${!showAll && index >= 2 ? 'hidden sm:flex flex-col' : 'flex flex-col'}`}
               >
                 
                 {/* PRODUCT IMAGE CONTAINER */}
