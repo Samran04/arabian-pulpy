@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { Search, User, ShoppingBag, Menu, X } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import ArabianLogo from "./ArabianLogo";
@@ -14,6 +15,8 @@ export default function Header({ onOpenSearch, onOpenUserModal, onOpenDistributo
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.href = `/#${id}`;
     }
   };
 
@@ -22,9 +25,9 @@ export default function Header({ onOpenSearch, onOpenUserModal, onOpenDistributo
       <div className="w-full max-w-7xl h-20 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
         {/* STANDALONE OFFICIAL WORDMARK LOGO */}
-        <a href="#" className="flex items-center group">
+        <Link href="/" className="flex items-center group">
           <ArabianLogo className="h-12 sm:h-[4.5rem] lg:h-[5rem] w-32 sm:w-40 lg:w-48" />
-        </a>
+        </Link>
 
         {/* DESKTOP NAV LINKS */}
         <nav className="hidden lg:flex items-center space-x-10 text-xs tracking-[0.2em] uppercase font-sans font-medium text-neutral-dark">
@@ -35,7 +38,7 @@ export default function Header({ onOpenSearch, onOpenUserModal, onOpenDistributo
             FLAVORS
           </button>
           <button
-            onClick={() => scrollToSection("about")}
+            onClick={() => scrollToSection("story")}
             className="hover:text-accent transition-colors py-1"
           >
             OUR STORY
@@ -52,12 +55,12 @@ export default function Header({ onOpenSearch, onOpenUserModal, onOpenDistributo
           >
             DISTRIBUTORS
           </button>
-          <button
-            onClick={() => scrollToSection("footer")}
+          <Link
+            href="/contact"
             className="hover:text-accent transition-colors py-1"
           >
             CONTACT
-          </button>
+          </Link>
         </nav>
 
         {/* ACTION BUTTONS */}
@@ -111,7 +114,7 @@ export default function Header({ onOpenSearch, onOpenUserModal, onOpenDistributo
             FLAVORS
           </button>
           <button
-            onClick={() => scrollToSection("about")}
+            onClick={() => scrollToSection("story")}
             className="block w-full text-left text-sm font-sans tracking-widest text-neutral-dark hover:text-accent py-2"
           >
             OUR STORY
@@ -131,12 +134,13 @@ export default function Header({ onOpenSearch, onOpenUserModal, onOpenDistributo
           >
             DISTRIBUTORS
           </button>
-          <button
-            onClick={() => scrollToSection("about")}
+          <Link
+            href="/contact"
+            onClick={() => setMobileMenuOpen(false)}
             className="block w-full text-left text-sm font-sans tracking-widest text-neutral-dark hover:text-accent py-2"
           >
-            ABOUT
-          </button>
+            CONTACT
+          </Link>
         </div>
       )}
     </header>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { Instagram, Facebook, Twitter, Linkedin, ArrowRight, CheckCircle2 } from "lucide-react";
 import FadeInView from "./FadeInView";
 
@@ -23,6 +24,8 @@ export default function Footer({ onOpenDistributorModal }) {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.href = `/#${id}`;
     }
   };
 
@@ -109,7 +112,7 @@ export default function Footer({ onOpenDistributorModal }) {
               About Us
             </h4>
             <ul className="space-y-4 text-sm font-light text-white/80">
-              <li><button onClick={() => scrollToSection("about")} className="hover:text-accent-light transition-colors">Our Story</button></li>
+              <li><button onClick={() => scrollToSection("story")} className="hover:text-accent-light transition-colors">Our Story</button></li>
               <li><a href="#" className="hover:text-accent-light transition-colors">Sustainability</a></li>
               <li><a href="#" className="hover:text-accent-light transition-colors">Careers</a></li>
               <li><a href="#" className="hover:text-accent-light transition-colors">Press</a></li>
@@ -122,7 +125,7 @@ export default function Footer({ onOpenDistributorModal }) {
               Support
             </h4>
             <ul className="space-y-4 text-sm font-light text-white/80">
-              <li><a href="#" className="hover:text-accent-light transition-colors">Contact Us</a></li>
+              <li><Link href="/contact" className="hover:text-accent-light transition-colors">Contact Us</Link></li>
               <li><a href="#" className="hover:text-accent-light transition-colors">FAQ</a></li>
               <li><a href="#" className="hover:text-accent-light transition-colors">Shipping & Returns</a></li>
               <li><a href="#" className="hover:text-accent-light transition-colors">Track Order</a></li>

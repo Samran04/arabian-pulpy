@@ -93,7 +93,7 @@ export default function CartDrawer() {
                         <div>
                           <h4 className="font-serif text-lg text-neutral-white truncate">{item.name}</h4>
                           <span className="text-sm text-accent font-sans block pt-1">
-                            ${item.price.toFixed(2)}
+                            ₹{item.price.toFixed(2)}
                           </span>
                         </div>
 
@@ -153,21 +153,21 @@ export default function CartDrawer() {
                   <div className="space-y-3 pt-4 border-t border-primary-light/20 text-neutral-muted font-light">
                     <div className="flex justify-between">
                       <span>Subtotal</span>
-                      <span>${subtotal.toFixed(2)}</span>
+                      <span>₹{subtotal.toFixed(2)}</span>
                     </div>
                     {discount > 0 && (
                       <div className="flex justify-between text-accent">
                         <span>Discount (10%)</span>
-                        <span>-${discount.toFixed(2)}</span>
+                        <span>-₹{discount.toFixed(2)}</span>
                       </div>
                     )}
                     <div className="flex justify-between">
                       <span>Shipping</span>
-                      <span>{shipping === 0 ? "Complimentary" : `$${shipping.toFixed(2)}`}</span>
+                      <span>{shipping === 0 ? "Complimentary" : `₹${shipping.toFixed(2)}`}</span>
                     </div>
                     <div className="flex justify-between text-base font-normal text-neutral-white pt-4 border-t border-primary-light/20">
                       <span>Total</span>
-                      <span>${finalTotal.toFixed(2)}</span>
+                      <span>₹{finalTotal.toFixed(2)}</span>
                     </div>
                   </div>
 

@@ -37,15 +37,6 @@ export default function FlavorsSection({ onSelectFlavor, flavors = [] }) {
           <p className="text-neutral-muted font-sans text-sm font-light leading-relaxed pt-2">
             A curated selection of natural pulp beverages, crafted to delight every taste.
           </p>
-          <div className="hidden sm:block pt-4">
-            <button
-              onClick={() => setShowAll(!showAll)}
-              className="inline-flex items-center gap-3 px-6 py-3 bg-[#3D245B] border border-transparent text-white font-sans text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase hover:bg-[#2A1940] transition-all duration-300 rounded-md shadow-sm"
-            >
-              <span>{showAll ? "SHOW FEWER" : `VIEW ALL PRODUCTS`}</span>
-              <ArrowRight className="w-4 h-4 stroke-[2]" />
-            </button>
-          </div>
         </FadeInView>
 
         {/* PRODUCTS GRID */}
@@ -58,25 +49,28 @@ export default function FlavorsSection({ onSelectFlavor, flavors = [] }) {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: false, margin: "-100px" }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className={`group cursor-pointer bg-white p-4 rounded-[7px] shadow-sm border border-neutral-border/40 hover:shadow-md transition-shadow ${!showAll && index >= 2 ? 'hidden sm:flex flex-col' : 'flex flex-col'}`}
                 onClick={() => onSelectFlavor(flavor)}
+                className={`group cursor-pointer bg-white p-4 rounded-[7px] shadow-sm border border-neutral-border/40 hover:shadow-md transition-shadow flex flex-col`}
               >
                 
                 {/* PRODUCT IMAGE CONTAINER */}
-                <div 
-                  className="relative aspect-square mb-6 rounded-[7px] overflow-hidden flex items-center justify-center transition-transform duration-500 group-hover:-translate-y-2"
-                  style={{ backgroundColor: flavor.pastelBg || '#f3f4f6' }}
-                >
+                <div className="relative aspect-[4/5] w-full rounded-[5px] overflow-hidden bg-neutral-background flex items-center justify-center p-4 mb-4">
+                  
+                  {/* Category Tag */}
+                  <span className="absolute top-3 left-3 text-[10px] font-sans font-medium text-neutral-muted uppercase tracking-wider bg-white/80 backdrop-blur-sm px-2 py-0.5 rounded-full border border-neutral-border/30 z-10">
+                    {flavor.category}
+                  </span>
+
                   <Image
                     src={flavor.image}
                     alt={flavor.name}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                    className="object-contain p-6 relative z-10 transition-transform duration-700 group-hover:scale-110"
+                    className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
 
-                {/* PRODUCT INFO */}
+                {/* CONTENT */}
                 <div className="flex flex-col px-2 pb-2">
                   <h3 className="font-serif text-lg font-medium text-neutral-dark mb-1">
                     {flavor.name}
@@ -87,7 +81,7 @@ export default function FlavorsSection({ onSelectFlavor, flavors = [] }) {
                   
                   <div className="flex items-center justify-between mt-auto">
                     <span className="font-sans font-bold text-lg text-neutral-dark">
-                      ${flavor.price.toFixed(2)}
+                      ₹{flavor.price.toFixed(2)}
                     </span>
                     
                     <button
@@ -95,7 +89,7 @@ export default function FlavorsSection({ onSelectFlavor, flavors = [] }) {
                         e.stopPropagation();
                         addToCart(flavor);
                       }}
-                      className="w-10 h-10 rounded-full border border-neutral-border flex items-center justify-center text-accent hover:bg-accent hover:text-white transition-all duration-300"
+                      className="p-2.5 rounded-full bg-accent text-white hover:bg-accent-light transition-all duration-300 shadow-sm hover:scale-105 active:scale-95"
                       aria-label={`Add ${flavor.name} to cart`}
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
@@ -108,11 +102,11 @@ export default function FlavorsSection({ onSelectFlavor, flavors = [] }) {
           })}
         </div>
 
-        {/* MOBILE VIEW MORE BUTTON */}
-        <div className="mt-12 flex justify-center sm:hidden">
+        {/* VIEW ALL PRODUCTS BUTTON (BELOW PRODUCTS FOR ALL VIEWPORTS) */}
+        <div className="mt-12 flex justify-center">
           <button
             onClick={() => setShowAll(!showAll)}
-            className="inline-flex items-center gap-3 px-8 py-3 bg-[#3D245B] border border-transparent text-white font-sans text-xs font-bold tracking-[0.2em] uppercase hover:bg-[#2A1940] transition-all duration-300 rounded-md w-full justify-center shadow-sm"
+            className="inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-[#3D245B] border border-transparent text-white font-sans text-xs font-bold tracking-[0.2em] uppercase hover:bg-[#2A1940] transition-all duration-300 rounded-md shadow-sm w-full sm:w-auto"
           >
             <span>{showAll ? "SHOW FEWER" : `VIEW ALL PRODUCTS`}</span>
             <ArrowRight className="w-4 h-4 stroke-[2]" />

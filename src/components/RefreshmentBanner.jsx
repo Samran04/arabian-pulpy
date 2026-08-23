@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
-import { Sparkles, ArrowRight, X, Check } from "lucide-react";
+import Link from "next/link";
+import { Sparkles, ArrowRight, Check } from "lucide-react";
 import FadeInView from "./FadeInView";
 
 export default function RefreshmentBanner() {
-  const [modalOpen, setModalOpen] = useState(false);
-
   return (
     <section className="py-12 lg:py-24 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -59,13 +58,13 @@ export default function RefreshmentBanner() {
               </div>
 
               <div className="pt-4">
-                <button
-                  onClick={() => setModalOpen(true)}
+                <Link
+                  href="/pouch"
                   className="inline-flex items-center gap-3 px-8 py-3 bg-primary-deep text-white font-sans text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-neutral-dark transition-all duration-300 rounded-full"
                 >
                   SHOP POUCH
                   <ArrowRight className="w-4 h-4 stroke-[2]" />
-                </button>
+                </Link>
               </div>
 
               {/* THREE ICONS ROW */}

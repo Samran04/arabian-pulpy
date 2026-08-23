@@ -27,7 +27,7 @@ export default function CommunityBlog() {
   const y3 = useSpring(rawY3, physics);
 
   return (
-    <section id="blog" className="pt-12 pb-24 lg:py-24 bg-primary-muted relative">
+    <section id="story" className="pt-12 pb-24 lg:py-24 bg-primary-muted relative">
       <FadeInView>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16 lg:space-y-32">
         

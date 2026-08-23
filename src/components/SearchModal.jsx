@@ -78,7 +78,7 @@ export default function SearchModal({ isOpen, onClose, onSelectFlavor, flavors =
                         </div>
                         <div className="min-w-0">
                           <h5 className="font-serif text-sm font-bold text-neutral-dark truncate">{flavor.name}</h5>
-                          <span className="text-xs text-accent font-extrabold">${flavor.price.toFixed(2)}</span>
+                          <span className="text-xs text-accent font-extrabold">₹{flavor.price.toFixed(2)}</span>
                         </div>
                       </div>
                     ))}
