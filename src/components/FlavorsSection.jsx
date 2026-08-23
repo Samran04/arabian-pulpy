@@ -3,12 +3,12 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { FLAVORS_DATA } from "../data/flavors";
+
 import { useCart } from "../context/CartContext";
 import { motion } from "framer-motion";
 import FadeInView from "./FadeInView";
 
-export default function FlavorsSection({ onSelectFlavor }) {
+export default function FlavorsSection({ onSelectFlavor, flavors = [] }) {
   const [activeCategory, setActiveCategory] = useState("All");
   const [showAll, setShowAll] = useState(false);
   const { addToCart } = useCart();
@@ -17,8 +17,8 @@ export default function FlavorsSection({ onSelectFlavor }) {
 
   const filteredFlavors =
     activeCategory === "All"
-      ? FLAVORS_DATA
-      : FLAVORS_DATA.filter((f) => f.category === activeCategory);
+      ? flavors
+      : flavors.filter((f) => f.category === activeCategory);
 
   const displayedFlavors = showAll ? filteredFlavors : filteredFlavors.slice(0, 4);
 

@@ -5,6 +5,20 @@ import { Instagram, Facebook, Twitter, Linkedin, ArrowRight, CheckCircle2 } from
 import FadeInView from "./FadeInView";
 
 export default function Footer({ onOpenDistributorModal }) {
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (email.trim()) {
+      setSubscribed(true);
+      setTimeout(() => {
+        setSubscribed(false);
+        setEmail("");
+      }, 3000);
+    }
+  };
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -17,6 +31,47 @@ export default function Footer({ onOpenDistributorModal }) {
       <FadeInView>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
+        {/* TOP SECTION: NEWSLETTER */}
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12 pb-16 border-b border-white/10">
+          
+          <div className="space-y-4 max-w-lg">
+            <h4 className="font-sans text-xs font-medium text-white/50 uppercase tracking-widest">
+              Newsletter
+            </h4>
+            <h2 className="font-serif font-bold text-4xl sm:text-5xl text-white leading-tight">
+              Join the Arabian Pulpy Family
+            </h2>
+          </div>
+
+          <div className="w-full max-w-md space-y-4">
+            {subscribed ? (
+              <div className="py-3 text-accent text-sm flex items-center gap-3">
+                <CheckCircle2 className="w-5 h-5 stroke-[1.5]" />
+                <span>Thank you for subscribing.</span>
+              </div>
+            ) : (
+              <form onSubmit={handleSubscribe} className="flex border-b border-white/30 focus-within:border-white transition-colors">
+                <input
+                  type="email"
+                  required
+                  placeholder="Email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full py-3 bg-transparent text-sm text-white focus:outline-none placeholder:text-white/40"
+                />
+                <button
+                  type="submit"
+                  aria-label="Subscribe"
+                  className="px-4 text-xs font-sans tracking-widest uppercase font-bold text-white hover:text-accent transition-colors"
+                >
+                  Subscribe
+                </button>
+              </form>
+            )}
+          </div>
+
+        </div>
+
         {/* MIDDLE SECTION: 5-COLUMNS */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 py-16">
           

@@ -6,29 +6,7 @@ import { Sparkles, Citrus, ShieldCheck, HeartPulse } from "lucide-react";
 import { motion } from "framer-motion";
 import FadeInView from "./FadeInView";
 
-export default function ValueProps() {
-  const props = [
-    {
-      image: "/assets/vp_authentic_taste.jpg",
-      title: "Authentic Taste",
-      desc: "Real fruit pulp meticulously prepared to deliver an authentic, rich profile.",
-    },
-    {
-      image: "/assets/vp_real_fruit.jpg",
-      title: "Real Fruit Pulp",
-      desc: "Sourced from the finest orchards, bursting with natural goodness.",
-    },
-    {
-      image: "/assets/vp_natural_ingredients.jpg",
-      title: "Natural Ingredients",
-      desc: "Pure refreshment with absolutely no artificial colors or preservatives.",
-    },
-    {
-      image: "/assets/vp_quality.jpg",
-      title: "Quality Assurance",
-      desc: "Crafted under rigorous hygienic standards for a premium experience.",
-    },
-  ];
+export default function ValueProps({ propsData }) {
 
   return (
     <section className="py-12 lg:py-24 bg-white relative overflow-hidden border-t border-neutral-border/30">
@@ -58,7 +36,7 @@ export default function ValueProps() {
 
           {/* RIGHT: 4 ITEMS GRID */}
           <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {props.map((item, index) => {
+            {propsData.map((item, index) => {
               return (
                 <motion.div 
                   key={index} 

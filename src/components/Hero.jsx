@@ -21,7 +21,7 @@ export default function Hero({ onExploreClick }) {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center opacity-15 hidden md:block"
+          className="object-cover object-center opacity-100 hidden md:block"
         />
         {/* MOBILE BACKGROUND */}
         <Image
@@ -78,40 +78,6 @@ export default function Hero({ onExploreClick }) {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="hidden md:flex h-[700px] w-full relative items-center justify-center mt-10 lg:mt-0"
         >
-
-          {/* Left Bottle - Lychee */}
-          <div className="absolute w-[340px] h-[540px] left-10 lg:-left-4 top-32 z-10 hover:scale-105 hover:-translate-y-2 transition-transform duration-500">
-            <Image
-              src="/assets/lychee-cup.png"
-              alt="Lychee Cup"
-              fill
-              sizes="(max-width: 768px) 100vw, 450px"
-              className="object-contain"
-            />
-          </div>
-
-          {/* Center Bottle - Grape (Hero) */}
-          <div className="absolute w-[420px] h-[660px] top-8 z-20 transform hover:scale-105 hover:-translate-y-4 transition-all duration-500">
-            <Image
-              src="/assets/grape-cup.png"
-              alt="Grape Cup"
-              fill
-              sizes="(max-width: 768px) 100vw, 550px"
-              priority
-              className="object-contain drop-shadow-2xl"
-            />
-          </div>
-
-          {/* Right Bottle - Basil Seeds */}
-          <div className="absolute w-[340px] h-[540px] right-10 lg:-right-4 top-24 z-10 hover:scale-105 hover:-translate-y-2 transition-transform duration-500">
-            <Image
-              src="/assets/basil-seeds.png"
-              alt="Basil Seeds Cup"
-              fill
-              sizes="(max-width: 768px) 100vw, 450px"
-              className="object-contain"
-            />
-          </div>
 
         </motion.div>
       </div>

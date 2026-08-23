@@ -3,22 +3,21 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Search, X, Star, ArrowRight } from "lucide-react";
-import { FLAVORS_DATA } from "../data/flavors";
-import { BLOG_POSTS } from "../data/blog";
 
-export default function SearchModal({ isOpen, onClose, onSelectFlavor }) {
+
+export default function SearchModal({ isOpen, onClose, onSelectFlavor, flavors = [], blogs = [] }) {
   const [query, setQuery] = useState("");
 
   if (!isOpen) return null;
 
-  const matchedFlavors = FLAVORS_DATA.filter(
+  const matchedFlavors = flavors.filter(
     (f) =>
       f.name.toLowerCase().includes(query.toLowerCase()) ||
       f.description.toLowerCase().includes(query.toLowerCase()) ||
       f.category.toLowerCase().includes(query.toLowerCase())
   );
 
-  const matchedBlogs = BLOG_POSTS.filter(
+  const matchedBlogs = blogs.filter(
     (b) =>
       b.title.toLowerCase().includes(query.toLowerCase()) ||
       b.excerpt.toLowerCase().includes(query.toLowerCase())
