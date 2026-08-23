@@ -92,7 +92,7 @@ export default function CartDrawer() {
                       <div className="flex-1 min-w-0 flex flex-col h-full justify-between py-1">
                         <div>
                           <h4 className="font-serif text-lg text-neutral-white truncate">{item.name}</h4>
-                          <span className="text-sm text-accent font-sans block pt-1">
+                          <span className="text-sm text-accent font-montserrat font-bold block pt-1 tabular-nums">
                             ₹{item.price.toFixed(2)}
                           </span>
                         </div>
@@ -153,21 +153,21 @@ export default function CartDrawer() {
                   <div className="space-y-3 pt-4 border-t border-primary-light/20 text-neutral-muted font-light">
                     <div className="flex justify-between">
                       <span>Subtotal</span>
-                      <span>₹{subtotal.toFixed(2)}</span>
+                      <span className="font-montserrat font-bold text-neutral-offwhite tabular-nums">₹{subtotal.toFixed(2)}</span>
                     </div>
                     {discount > 0 && (
                       <div className="flex justify-between text-accent">
                         <span>Discount (10%)</span>
-                        <span>-₹{discount.toFixed(2)}</span>
+                        <span className="font-montserrat font-bold tabular-nums">-₹{discount.toFixed(2)}</span>
                       </div>
                     )}
                     <div className="flex justify-between">
                       <span>Shipping</span>
-                      <span>{shipping === 0 ? "Complimentary" : `₹${shipping.toFixed(2)}`}</span>
+                      <span className="font-montserrat font-medium">{shipping === 0 ? "Complimentary" : `₹${shipping.toFixed(2)}`}</span>
                     </div>
                     <div className="flex justify-between text-base font-normal text-neutral-white pt-4 border-t border-primary-light/20">
                       <span>Total</span>
-                      <span>₹{finalTotal.toFixed(2)}</span>
+                      <span className="font-montserrat font-bold text-lg text-white tabular-nums">₹{finalTotal.toFixed(2)}</span>
                     </div>
                   </div>
 

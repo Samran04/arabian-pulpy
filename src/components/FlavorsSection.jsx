@@ -80,7 +80,7 @@ export default function FlavorsSection({ onSelectFlavor, flavors = [] }) {
                   </p>
                   
                   <div className="flex items-center justify-between mt-auto">
-                    <span className="font-sans font-bold text-lg text-neutral-dark">
+                    <span className="font-montserrat font-bold text-lg text-neutral-dark tabular-nums">
                       ₹{flavor.price.toFixed(2)}
                     </span>
                     

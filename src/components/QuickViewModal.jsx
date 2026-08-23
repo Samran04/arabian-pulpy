@@ -64,7 +64,7 @@ export default function QuickViewModal({ flavor, onClose }) {
 
             {/* PRICE */}
             <div className="flex items-center gap-4 py-2.5 border-y border-neutral-200/80">
-              <span className="font-serif text-2xl font-bold text-neutral-dark">
+              <span className="font-montserrat text-2xl font-bold text-neutral-dark tabular-nums">
                 ₹{flavor.price.toFixed(2)}
               </span>
               <span className="text-[11px] font-sans text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 font-medium">

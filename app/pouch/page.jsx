@@ -204,7 +204,7 @@ export default function PouchDetailsPage() {
                   </p>
 
                   <div className="flex items-baseline gap-4 pt-2">
-                    <span className="font-serif text-3xl font-bold text-neutral-dark">
+                    <span className="font-montserrat text-3xl font-bold text-neutral-dark tabular-nums">
                       ₹{pouchFlavor.price.toFixed(2)}
                     </span>
                     <span className="text-xs font-sans font-medium text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
@@ -457,7 +457,7 @@ export default function PouchDetailsPage() {
                 <div className="space-y-1 text-center">
                   <h3 className="font-serif font-bold text-xl text-neutral-dark">{flavor.name}</h3>
                   <p className="text-xs text-neutral-muted font-sans">{flavor.tagline}</p>
-                  <p className="font-serif font-bold text-lg text-accent pt-2">₹{flavor.price.toFixed(2)}</p>
+                  <p className="font-montserrat font-bold text-lg text-accent pt-2 tabular-nums">₹{flavor.price.toFixed(2)}</p>
                 </div>
               </div>
             ))}
