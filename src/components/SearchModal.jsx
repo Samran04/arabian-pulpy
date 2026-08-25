@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Search, X, Star, ArrowRight } from "lucide-react";
 
 
-export default function SearchModal({ isOpen, onClose, onSelectFlavor, flavors = [], blogs = [] }) {
+export default function SearchModal({ isOpen, onClose, onSelectFlavor, flavors = [] }) {
   const [query, setQuery] = useState("");
 
   if (!isOpen) return null;
@@ -15,12 +15,6 @@ export default function SearchModal({ isOpen, onClose, onSelectFlavor, flavors =
       f.name.toLowerCase().includes(query.toLowerCase()) ||
       f.description.toLowerCase().includes(query.toLowerCase()) ||
       f.category.toLowerCase().includes(query.toLowerCase())
-  );
-
-  const matchedBlogs = blogs.filter(
-    (b) =>
-      b.title.toLowerCase().includes(query.toLowerCase()) ||
-      b.excerpt.toLowerCase().includes(query.toLowerCase())
   );
 
   return (
@@ -40,68 +34,49 @@ export default function SearchModal({ isOpen, onClose, onSelectFlavor, flavors =
           />
           <button
             onClick={onClose}
-            className="p-2 text-neutral-muted hover:text-neutral-dark rounded-full hover:bg-neutral-background transition-all"
+            className="p-1 rounded-full text-neutral-muted hover:text-neutral-dark transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* RESULTS */}
-        <div className="flex-1 overflow-y-auto space-y-6 pr-2">
+        <div className="flex-1 overflow-y-auto space-y-6">
           
           {query.trim() === "" ? (
-            <div className="text-center py-8 text-neutral-muted text-xs font-sans font-light">
-              Type to search signature natural pulp flavors and articles.
+            <div className="text-center py-8 text-xs text-neutral-muted font-sans">
+              Type to search by drink name, category, or ingredients...
             </div>
           ) : (
-            <>
-              {/* FLAVORS */}
-              <div className="space-y-3">
-                <h4 className="text-xs font-bold text-accent font-sans tracking-widest uppercase">
-                  Flavors ({matchedFlavors.length})
-                </h4>
-                {matchedFlavors.length === 0 ? (
-                  <p className="text-xs text-neutral-muted font-sans">No matching flavors found.</p>
-                ) : (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {matchedFlavors.map((flavor) => (
-                      <div
-                        key={flavor.id}
-                        onClick={() => {
-                          onSelectFlavor(flavor);
-                          onClose();
-                        }}
-                        className="flex items-center gap-3 p-3 rounded-xl bg-white border border-neutral-border/30 hover:border-accent hover:shadow-sm cursor-pointer transition-all duration-300"
-                      >
-                        <div className="relative w-12 h-12 bg-neutral-background rounded-lg shrink-0 overflow-hidden border border-neutral-border/30">
-                          <Image src={flavor.image} alt={flavor.name} fill className="object-contain p-1" />
-                        </div>
-                        <div className="min-w-0">
-                          <h5 className="font-serif text-sm font-bold text-neutral-dark truncate">{flavor.name}</h5>
-                          <span className="text-xs text-accent font-montserrat font-extrabold tabular-nums">₹{flavor.price.toFixed(2)}</span>
-                        </div>
+            <div className="space-y-3">
+              <h4 className="text-xs font-bold text-accent font-sans tracking-widest uppercase">
+                Flavors ({matchedFlavors.length})
+              </h4>
+              {matchedFlavors.length === 0 ? (
+                <p className="text-xs text-neutral-muted font-sans">No matching flavors found.</p>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {matchedFlavors.map((flavor) => (
+                    <div
+                      key={flavor.id}
+                      onClick={() => {
+                        onSelectFlavor(flavor);
+                        onClose();
+                      }}
+                      className="flex items-center gap-3 p-3 rounded-xl bg-white border border-neutral-border/30 hover:border-accent hover:shadow-sm cursor-pointer transition-all duration-300"
+                    >
+                      <div className="relative w-12 h-12 bg-neutral-background rounded-lg shrink-0 overflow-hidden border border-neutral-border/30">
+                        <Image src={flavor.image} alt={flavor.name} fill className="object-contain p-1" />
                       </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* BLOGS */}
-              <div className="space-y-3 pt-3 border-t border-neutral-border/30">
-                <h4 className="text-xs font-bold text-accent font-sans tracking-widest uppercase">
-                  Articles ({matchedBlogs.length})
-                </h4>
-                {matchedBlogs.map((blog) => (
-                  <div
-                    key={blog.id}
-                    className="p-3.5 rounded-xl bg-white border border-neutral-border/30 shadow-sm"
-                  >
-                    <h5 className="font-serif text-sm font-bold text-neutral-dark">{blog.title}</h5>
-                    <p className="text-xs text-neutral-muted font-sans line-clamp-1">{blog.excerpt}</p>
-                  </div>
-                ))}
-              </div>
-            </>
+                      <div className="min-w-0">
+                        <h5 className="font-serif text-sm font-bold text-neutral-dark truncate">{flavor.name}</h5>
+                        <span className="text-xs text-accent font-montserrat font-extrabold tabular-nums">₹{flavor.price.toFixed(2)}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           )}
 
         </div>

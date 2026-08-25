@@ -31,7 +31,6 @@ import QuickViewModal from "../../src/components/QuickViewModal";
 import FadeInView from "../../src/components/FadeInView";
 import { useCart } from "../../src/context/CartContext";
 import { FLAVORS_DATA } from "../../src/data/flavors";
-import { BLOG_POSTS } from "../../src/data/blog";
 
 export default function PouchDetailsPage() {
   const pouchFlavor = FLAVORS_DATA.find((f) => f.id === "grape-pouch") || {
@@ -476,7 +475,6 @@ export default function PouchDetailsPage() {
         isOpen={searchOpen}
         onClose={() => setSearchOpen(false)}
         flavors={FLAVORS_DATA}
-        blogs={BLOG_POSTS}
         onSelectFlavor={(f) => setSelectedFlavorModal(f)}
       />
 

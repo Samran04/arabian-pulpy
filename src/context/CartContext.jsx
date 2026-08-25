@@ -2,15 +2,26 @@
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { getFlavorsWithStock } from "../services/firebaseService";
+import CheckoutModal from "../components/CheckoutModal";
 
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState(null);
   const [stockPopupMessage, setStockPopupMessage] = useState(null);
   const [liveInventory, setLiveInventory] = useState([]);
+
+  const openCheckout = () => {
+    setIsCartOpen(false); // Close cart drawer smoothly
+    setIsCheckoutOpen(true); // Open express guest checkout
+  };
+
+  const closeCheckout = () => {
+    setIsCheckoutOpen(false);
+  };
 
   // Fetch live inventory to check stock levels
   const refreshInventory = async () => {
@@ -157,6 +168,10 @@ export function CartProvider({ children }) {
         cart,
         isCartOpen,
         setIsCartOpen,
+        isCheckoutOpen,
+        setIsCheckoutOpen,
+        openCheckout,
+        closeCheckout,
         addToCart,
         removeFromCart,
         updateQuantity,
@@ -173,6 +188,12 @@ export function CartProvider({ children }) {
       }}
     >
       {children}
+
+      {/* GLOBAL GUEST CHECKOUT MODAL */}
+      <CheckoutModal
+        isOpen={isCheckoutOpen}
+        onClose={closeCheckout}
+      />
 
       {/* OUT OF STOCK / STOCK LIMIT POPUP MODAL */}
       {stockPopupMessage && (

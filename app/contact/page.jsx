@@ -28,7 +28,6 @@ import QuickViewModal from "../../src/components/QuickViewModal";
 import FadeInView from "../../src/components/FadeInView";
 import { useCart } from "../../src/context/CartContext";
 import { FLAVORS_DATA } from "../../src/data/flavors";
-import { BLOG_POSTS } from "../../src/data/blog";
 
 export default function ContactPage() {
   const { toastMessage } = useCart();
@@ -416,7 +415,6 @@ export default function ContactPage() {
         isOpen={searchOpen}
         onClose={() => setSearchOpen(false)}
         flavors={FLAVORS_DATA}
-        blogs={BLOG_POSTS}
         onSelectFlavor={(f) => setSelectedFlavorModal(f)}
       />
 

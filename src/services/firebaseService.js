@@ -12,7 +12,6 @@ import {
   serverTimestamp 
 } from "firebase/firestore";
 import { FLAVORS_DATA } from "../data/flavors";
-import { BLOG_POSTS } from "../data/blog";
 import { VALUE_PROPS } from "../data/valueProps";
 
 // In-memory cache for local inventory changes when offline/demo
@@ -141,12 +140,6 @@ export async function seedFirestoreDatabase() {
         inStock: flavor.inStock ?? true,
         updatedAt: serverTimestamp(),
       });
-    }
-
-    // Seed Blogs
-    for (const blog of BLOG_POSTS) {
-      const blogRef = doc(db, "blogs", blog.id.toString());
-      await setDoc(blogRef, blog);
     }
 
     // Seed Value Props

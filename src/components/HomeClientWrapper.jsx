@@ -16,7 +16,7 @@ import DistributorModal from "./DistributorModal";
 import { useCart } from "../context/CartContext";
 import { Sparkles } from "lucide-react";
 
-export default function HomeClientWrapper({ initialFlavors, initialBlogs, initialValueProps }) {
+export default function HomeClientWrapper({ initialFlavors, initialValueProps }) {
   const [selectedFlavor, setSelectedFlavor] = useState(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [userModalOpen, setUserModalOpen] = useState(false);
@@ -78,7 +78,6 @@ export default function HomeClientWrapper({ initialFlavors, initialBlogs, initia
         onClose={() => setSearchOpen(false)}
         onSelectFlavor={(flavor) => setSelectedFlavor(flavor)}
         flavors={initialFlavors}
-        blogs={initialBlogs}
       />
 
       <UserModal

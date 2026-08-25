@@ -2,13 +2,11 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { X, Trash2, Plus, Minus, ShoppingBag, ArrowRight, CheckCircle2 } from "lucide-react";
+import { X, Trash2, Plus, Minus, ShoppingBag, ArrowRight } from "lucide-react";
 import { useCart } from "../context/CartContext";
-import CheckoutModal from "./CheckoutModal";
 
 export default function CartDrawer() {
-  const { cart, isCartOpen, setIsCartOpen, removeFromCart, updateQuantity, clearCart, subtotal, discount, setDiscount } = useCart();
-  const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
+  const { cart, isCartOpen, setIsCartOpen, removeFromCart, updateQuantity, clearCart, subtotal, discount, setDiscount, openCheckout } = useCart();
   const [promoCode, setPromoCode] = useState("");
 
   if (!isCartOpen) return null;
@@ -23,7 +21,7 @@ export default function CartDrawer() {
   };
 
   const handleCheckout = () => {
-    setCheckoutModalOpen(true);
+    openCheckout();
   };
 
   const shipping = subtotal > 20 || subtotal === 0 ? 0 : 4.99;
@@ -165,12 +163,6 @@ export default function CartDrawer() {
 
         </div>
       </div>
-
-      {/* GUEST CHECKOUT MODAL */}
-      <CheckoutModal
-        isOpen={checkoutModalOpen}
-        onClose={() => setCheckoutModalOpen(false)}
-      />
     </div>
   );
 }
