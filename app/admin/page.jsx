@@ -251,14 +251,14 @@ export default function AdminPage() {
                   </p>
                 </div>
 
-                {/* SEED DATABASE & LOGOUT BUTTONS */}
+                {/* CONTROL BUTTONS */}
                 <div className="flex items-center gap-3">
                   <button
                     onClick={handleSeedDB}
-                    className="px-5 py-3 rounded-full bg-accent hover:bg-accent-light text-white text-xs font-bold tracking-wider uppercase transition-all shadow-md flex items-center gap-2"
+                    className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors border border-white/20"
+                    title="Re-seed Firestore Database"
                   >
                     <Database className="w-4 h-4" />
-                    <span>Seed Firestore DB</span>
                   </button>
 
                   <button
