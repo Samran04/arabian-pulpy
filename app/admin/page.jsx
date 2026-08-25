@@ -20,7 +20,10 @@ import {
   ArrowLeft,
   Users,
   Check,
-  Sparkles
+  Sparkles,
+  Lock,
+  KeyRound,
+  LogOut
 } from "lucide-react";
 import Header from "../../src/components/Header";
 import Footer from "../../src/components/Footer";
@@ -37,6 +40,9 @@ import {
 import { isFirebaseConfigured } from "../../src/lib/firebase";
 
 export default function AdminPage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [adminPassword, setAdminPassword] = useState("");
+  const [authError, setAuthError] = useState("");
   const [activeTab, setActiveTab] = useState("inventory");
   const [inventory, setInventory] = useState([]);
   const [orders, setOrders] = useState([]);
@@ -52,8 +58,34 @@ export default function AdminPage() {
   const [distributorModalOpen, setDistributorModalOpen] = useState(false);
 
   useEffect(() => {
-    fetchAdminData();
+    // Check if already authenticated in current session
+    if (typeof window !== "undefined" && sessionStorage.getItem("adminAuth") === "true") {
+      setIsAuthenticated(true);
+    }
   }, []);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchAdminData();
+    }
+  }, [isAuthenticated]);
+
+  const handleAdminLogin = (e) => {
+    e.preventDefault();
+    // Default Admin Password: admin123 (or 7857)
+    if (adminPassword === "admin123" || adminPassword === "7857" || adminPassword === "arabian123") {
+      setIsAuthenticated(true);
+      sessionStorage.setItem("adminAuth", "true");
+      setAuthError("");
+    } else {
+      setAuthError("Invalid Admin Password. Default is: admin123");
+    }
+  };
+
+  const handleAdminLogout = () => {
+    setIsAuthenticated(false);
+    sessionStorage.removeItem("adminAuth");
+  };
 
   const fetchAdminData = async () => {
     setLoading(true);
@@ -131,52 +163,121 @@ export default function AdminPage() {
         onOpenDistributorModal={() => setDistributorModalOpen(true)}
       />
 
-      {/* TOP BANNER */}
-      <div className="pt-28 lg:pt-36 pb-8 bg-gradient-to-b from-[#3D245B] to-[#26133B] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <Link 
-                  href="/"
-                  className="inline-flex items-center gap-1.5 text-xs text-white/70 hover:text-white transition-colors"
-                >
-                  <ArrowLeft className="w-3.5 h-3.5" />
-                  <span>Back to Store</span>
-                </Link>
-                <span className="text-white/40">•</span>
-                <span className="text-xs font-bold text-purple-300 uppercase tracking-widest bg-white/10 px-2.5 py-0.5 rounded-full border border-white/20">
-                  {isFirebaseConfigured ? "Firebase Connected" : "Local Dynamic Inventory"}
-                </span>
-              </div>
+      {!isAuthenticated ? (
+        /* ADMIN ACCESS LOCK SCREEN */
+        <div className="flex-1 flex items-center justify-center pt-32 pb-20 px-4">
+          <div className="w-full max-w-md bg-white border border-neutral-200/80 rounded-3xl p-8 sm:p-10 text-center shadow-xl space-y-6 animate-fadeIn">
+            <div className="w-16 h-16 rounded-full bg-purple-50 text-accent p-4 mx-auto flex items-center justify-center shadow-sm">
+              <Lock className="w-8 h-8 stroke-[1.75]" />
+            </div>
 
-              <h1 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-white">
-                Inventory & Stock Control Panel
-              </h1>
-              <p className="text-xs sm:text-sm text-white/80 font-light max-w-xl">
-                Manage live product stock quantities, toggle availability, update prices, and track customer orders in real-time.
+            <div className="space-y-2">
+              <span className="text-xs font-bold text-accent uppercase tracking-widest bg-purple-50 px-3 py-1 rounded-full border border-purple-200">
+                RESTRICTED PORTAL
+              </span>
+              <h2 className="font-serif text-3xl font-bold text-neutral-dark">
+                Admin Control Login
+              </h2>
+              <p className="text-xs text-neutral-muted font-sans font-light">
+                Enter your administrative password to access stock management and customer orders.
               </p>
             </div>
 
-            {/* SEED DATABASE BUTTON */}
-            <div className="flex items-center gap-3">
-              <button
-                onClick={handleSeedDB}
-                className="px-5 py-3 rounded-full bg-accent hover:bg-accent-light text-white text-xs font-bold tracking-wider uppercase transition-all shadow-md flex items-center gap-2"
-              >
-                <Database className="w-4 h-4" />
-                <span>Seed Firestore DB</span>
-              </button>
+            <form onSubmit={handleAdminLogin} className="space-y-4 text-xs font-sans text-left">
+              <div>
+                <label className="block text-neutral-dark font-bold mb-1.5 uppercase tracking-wider text-[11px]">
+                  Admin Password
+                </label>
+                <div className="relative">
+                  <KeyRound className="w-4 h-4 absolute left-3.5 top-3.5 text-neutral-400" />
+                  <input
+                    type="password"
+                    required
+                    placeholder="Enter password (e.g. admin123)"
+                    value={adminPassword}
+                    onChange={(e) => setAdminPassword(e.target.value)}
+                    className="w-full pl-10 pr-4 py-3 rounded-xl bg-[#FDFBF9] border border-neutral-200 text-neutral-dark placeholder:text-neutral-400 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all shadow-sm"
+                  />
+                </div>
+              </div>
+
+              {authError && (
+                <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-xs font-semibold">
+                  {authError}
+                </div>
+              )}
 
               <button
-                onClick={fetchAdminData}
-                className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors border border-white/20"
-                title="Refresh inventory"
+                type="submit"
+                className="w-full py-3.5 rounded-full bg-accent hover:bg-accent-light text-white font-sans font-bold text-xs tracking-widest uppercase hover:shadow-lg transition-all shadow-md active:scale-95"
               >
-                <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
+                Unlock Control Panel
               </button>
+            </form>
+
+            <div className="pt-2 border-t border-neutral-100 text-[11px] text-neutral-muted">
+              <span>Default Admin Passcode: </span>
+              <strong className="text-neutral-dark">admin123</strong>
             </div>
           </div>
+        </div>
+      ) : (
+        /* LOGGED IN ADMIN CONTROL PANEL */
+        <>
+          {/* TOP BANNER */}
+          <div className="pt-28 lg:pt-36 pb-8 bg-gradient-to-b from-[#3D245B] to-[#26133B] text-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <Link 
+                      href="/"
+                      className="inline-flex items-center gap-1.5 text-xs text-white/70 hover:text-white transition-colors"
+                    >
+                      <ArrowLeft className="w-3.5 h-3.5" />
+                      <span>Back to Store</span>
+                    </Link>
+                    <span className="text-white/40">•</span>
+                    <span className="text-xs font-bold text-purple-300 uppercase tracking-widest bg-white/10 px-2.5 py-0.5 rounded-full border border-white/20">
+                      {isFirebaseConfigured ? "Firebase Connected" : "Local Dynamic Inventory"}
+                    </span>
+                  </div>
+
+                  <h1 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-white">
+                    Inventory & Stock Control Panel
+                  </h1>
+                  <p className="text-xs sm:text-sm text-white/80 font-light max-w-xl">
+                    Manage live product stock quantities, toggle availability, update prices, and track customer orders in real-time.
+                  </p>
+                </div>
+
+                {/* SEED DATABASE & LOGOUT BUTTONS */}
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={handleSeedDB}
+                    className="px-5 py-3 rounded-full bg-accent hover:bg-accent-light text-white text-xs font-bold tracking-wider uppercase transition-all shadow-md flex items-center gap-2"
+                  >
+                    <Database className="w-4 h-4" />
+                    <span>Seed Firestore DB</span>
+                  </button>
+
+                  <button
+                    onClick={fetchAdminData}
+                    className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors border border-white/20"
+                    title="Refresh inventory"
+                  >
+                    <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
+                  </button>
+
+                  <button
+                    onClick={handleAdminLogout}
+                    className="p-3 rounded-full bg-rose-500/20 hover:bg-rose-500/30 text-white transition-colors border border-rose-300/30"
+                    title="Logout Admin"
+                  >
+                    <LogOut className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
 
           {seedStatus && (
             <div className="mt-4 px-4 py-2 bg-purple-500/30 border border-purple-400/40 rounded-xl text-xs text-white flex items-center gap-2 animate-fadeIn">
@@ -490,6 +591,9 @@ export default function AdminPage() {
         isOpen={distributorModalOpen}
         onClose={() => setDistributorModalOpen(false)}
       />
+
+        </>
+      )}
 
     </main>
   );
