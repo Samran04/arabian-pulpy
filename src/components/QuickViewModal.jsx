@@ -120,10 +120,19 @@ export default function QuickViewModal({ flavor, onClose }) {
 
               <button
                 onClick={handleAdd}
-                className="flex-1 py-3.5 px-6 bg-accent text-white font-sans font-bold text-xs tracking-widest uppercase hover:bg-accent-light transition-all duration-300 flex items-center justify-center gap-2.5 rounded-full shadow-md hover:shadow-lg active:scale-95"
+                disabled={flavor.inStock === false || flavor.stock === 0}
+                className={`flex-1 py-3.5 px-6 font-sans font-bold text-xs tracking-widest uppercase transition-all duration-300 flex items-center justify-center gap-2.5 rounded-full shadow-md ${
+                  flavor.inStock === false || flavor.stock === 0
+                    ? "bg-neutral-200 text-neutral-400 cursor-not-allowed"
+                    : "bg-accent text-white hover:bg-accent-light hover:shadow-lg active:scale-95"
+                }`}
               >
                 <ShoppingBag className="w-4 h-4 stroke-[2]" />
-                <span>Add To Cart • ₹{(flavor.price * quantity).toFixed(2)}</span>
+                <span>
+                  {flavor.inStock === false || flavor.stock === 0
+                    ? "Out of Stock"
+                    : `Add To Cart • ₹${(flavor.price * quantity).toFixed(2)}`}
+                </span>
               </button>
             </div>
 
